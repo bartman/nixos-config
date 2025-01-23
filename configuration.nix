@@ -77,8 +77,18 @@
     description = "Bart Trojanowski";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kate
-    #  thunderbird
+      clang
+      discord
+      firefox
+      gcc
+      gh
+      kitty
+      kitty-img
+      kitty-themes
+      ripgrep
+      slack
+      zoom-us
+      zoxide
     ];
   };
 
@@ -100,29 +110,17 @@
   environment.systemPackages = with pkgs; [
      bash
      bat
-     clang
      difftastic
-     discord
      fd
-     firefox
      fzf
-     gcc
-     gh
      git
-     kitty
-     kitty-img
-     kitty-themes
      neovim
      netcat
      nix-index
-     ripgrep
-     slack
      tmux
      tree
      vivid
      wget
-     zoom-us
-     zoxide
      zsh
   ];
 
@@ -130,7 +128,7 @@
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "bart" = import ./home.nix;
+      "bart" = import ./bart.nix;
     };
   };
 
