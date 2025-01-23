@@ -4,12 +4,13 @@
 
 # nixos-rebuild switch --use-remote-sudo
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -47,6 +48,9 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -96,22 +100,39 @@
   environment.systemPackages = with pkgs; [
      bash
      bat
+     clang
      difftastic
+     discord
      fd
+     firefox
      fzf
+     gcc
      gh
      git
+     kitty
+     kitty-img
+     kitty-themes
      neovim
      netcat
      nix-index
      ripgrep
+     slack
      tmux
      tree
      vivid
      wget
+     zoom-us
      zoxide
      zsh
   ];
+
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "bart" = import ./home.nix;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
