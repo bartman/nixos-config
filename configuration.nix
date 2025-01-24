@@ -117,6 +117,9 @@
      neovim
      netcat
      nix-index
+     terminus_font
+     terminus_font_ttf
+     terminus-nerdfont
      tmux
      tree
      vivid
