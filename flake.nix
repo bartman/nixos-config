@@ -1,4 +1,4 @@
-# vim: set sw=2 et
+# vim: set sw=2 et :
 
 # to activate, use
 # 
@@ -19,26 +19,26 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    system = "x86_64-linux";
+    let
+      system = "x86_64-linux";
 
-    user = {
-      name = "bart";
-      full = "Bart Trojanowski";
-    };
+      user = {
+        name = "bart";
+        full = "Bart Trojanowski";
+      };
 
-    pkgs = import nixpkgs {
-      inherit nixpkgs; #.legacyPackages.${system};
-      config = { allowUnfree = true; };
+      pkgs = import nixpkgs {
+        inherit nixpkgs; #.legacyPackages.${system};
+        config = { allowUnfree = true; };
+      };
+      lib = nixpkgs.lib;
+    in
+      {
+      nixosConfigurations = (
+        import ./hosts {
+          inherit (nixpkgs) lib;
+          inherit inputs user system home-manager;
+        }
+      );
     };
-    lib = nixpkgs.lib;
-  in
-  {
-    nixosConfigurations = (
-      import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit inputs user system home-manager;
-      }
-    );
-  };
 }

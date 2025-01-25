@@ -1,4 +1,4 @@
-# vim: set sw=2 et
+# vim: set sw=2 et :
 
 { config, pkgs, inputs, user, ... }:
 
@@ -28,6 +28,7 @@
   users.users.${user.name} = {
     isNormalUser = true;
     description = "${user.full}";
+    shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" "video" "audio" "camera" "lp" "scanner" "kvm" "libvirtd" "plex" ];
     #packages = with pkgs; [ ]; # defined in home.nix
   };
@@ -94,9 +95,10 @@
       vivid
       usbutils
       wget
-      zsh
     ];
   };
+
+  programs.zsh.enable = true;
 
   system.stateVersion = "24.11"; # Did you read the comment?
 

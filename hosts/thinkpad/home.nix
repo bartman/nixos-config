@@ -1,4 +1,4 @@
-# vim: set sw=2 et
+# vim: set sw=2 et :
 
 { config, lib, pkgs, user, ... }:
 
@@ -142,5 +142,10 @@
     defaultCacheTtl = 1800;
     enableSshSupport = false;
   };
+
+  programs.zsh = {
+    enable = true;
+  };
+
 }
 

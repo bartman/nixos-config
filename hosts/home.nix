@@ -1,4 +1,4 @@
-# vim: set sw=2 et
+# vim: set sw=2 et :
 
 { config, lib, pkgs, user, ... }:
 
@@ -70,6 +70,56 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    history.size = 100000;
+    shellAliases = {
+      nix-update = "sudo nixos-rebuild switch --flake /home/${user.name}/nixos/\\#";
+    };
+    initExtraBeforeCompInit = ''
+      if [ -d ~/etc/zsh/rc/ ] ; then
+        source ~/etc/zsh/rc/S10_zshopts
+        source ~/etc/zsh/rc/S11_help
+        source ~/etc/zsh/rc/S11_history
+        source ~/etc/zsh/rc/S20_environment
+        source ~/etc/zsh/rc/S20_openai_key
+        source ~/etc/zsh/rc/S20_xai_key
+        source ~/etc/zsh/rc/S30_binds
+        source ~/etc/zsh/rc/S40_completion
+      fi
+    '';
+    initExtra = ''
+      if [ -d ~/etc/zsh/rc/ ] ; then
+        source ~/etc/zsh/rc/S50_aliases
+        source ~/etc/zsh/rc/S50_functions
+        source ~/etc/zsh/rc/S60_prompt
+      fi
+    '';
+    envExtra = ''
+      if [ -d ~/etc/zsh/rc/ ] ; then
+        source ~/etc/zsh/rc/S20_environment
+      fi
+    '';
+  };
+
+  programs.fzf = {
+    enable = true;                               # fuzzy finder (ctrl-R)
+    enableZshIntegration = true;
+  };
+  programs.kitty = {
+    enable = true;                               # 
+    shellIntegration.enableZshIntegration = true;
+  };
+
+  programs.carapace.enable = true;               # command line completion generator
+  programs.dircolors.enable = true;              # LS_COLORS
+  programs.eza.enable = true;                    # ls replacement
+  programs.navi.enable = true;                   # cheat sheet for cli commands (ctrl-G)
+  programs.zoxide.enable = true;                 # cd-replacement
   
   programs.neovim.enable = true;
   programs.neovim.vimAlias = true;

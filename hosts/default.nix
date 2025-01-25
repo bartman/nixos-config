@@ -1,4 +1,4 @@
-# vim: set sw=2 et
+# vim: set sw=2 et :
 
 { lib, inputs, system, home-manager, user, ... }:
 
