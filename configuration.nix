@@ -97,8 +97,12 @@
 
   nix = {
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = false;
       experimental-features = [ "nix-command" "flakes" ];
+    };
+    optimise = {
+      automatic = true;
+      dates = [ "*-*-* 05:00:00" ];
     };
     gc = {
       automatic = true;
