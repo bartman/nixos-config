@@ -13,6 +13,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit user; };
+          home-manager.backupFileExtension = "backup";
           home-manager.users.${user.name} = { config, pkgs, user, ... }: {
             home.username = user.name;
             home.homeDirectory = "/home/${user.name}";
