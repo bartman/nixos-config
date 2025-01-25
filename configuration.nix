@@ -81,21 +81,7 @@
     isNormalUser = true;
     description = "Bart Trojanowski";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      btop
-      clang
-      discord
-      firefox
-      gcc
-      gh
-      kitty
-      kitty-img
-      kitty-themes
-      ripgrep
-      slack
-      zoom-us
-      zoxide
-    ];
+    #packages = with pkgs; [ ]; # defined in bart.nix
   };
 
   # Install firefox.
