@@ -1,0 +1,17 @@
+## deploy config
+
+	$ sudo nixos-rebuild switch --flake /etc/nixos#default
+
+## update channels
+
+	$ nix-channel --add https://nixos.org/channels/nixos-24.11
+
+	$ nix-channel --list 
+	nixos-24.11 https://nixos.org/channels/nixos-24.11
+
+	$ nix-channel --update
+	unpacking 1 channels...
+
+## uprade packages
+
+	sudo nixos-rebuild switch --upgrade --flake /etc/nixos#default
