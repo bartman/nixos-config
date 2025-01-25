@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, user, ... }:
 
 {
   imports =
@@ -52,7 +52,7 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    extaPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # fonts
@@ -97,7 +97,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
-    environment = {
+    variables = {
       TERMINAL = "kitty";
       EDITOR = "nvim";
       VISUAL = "nvim";

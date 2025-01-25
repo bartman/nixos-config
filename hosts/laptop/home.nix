@@ -1,9 +1,9 @@
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, user, ... }:
 
 {
   home.stateVersion = "24.11";
   home.username = "${user.name}";
-  home.homeDirectory; = "/home/${user.name}";
+  home.homeDirectory = "/home/${user.name}";
 
   nixpkgs.config.allowUnfree = true;
 

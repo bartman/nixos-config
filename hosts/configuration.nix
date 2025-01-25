@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, user, ... }:
 
 {
   imports = [
@@ -55,7 +55,7 @@
       dates = "*-*-* 03:00:00";
       options = "--delete-older-than 14d";
     };
-    package = pkgs.nixFlakes;                     # enable nixFlakes on system
+    #package = pkgs.nixFlakes;                     # enable nixFlakes on system
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       keep-outputs      = true
@@ -67,7 +67,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
-    environment = {
+    variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
