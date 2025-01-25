@@ -48,6 +48,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.browsed.enable = true;
+
+  services.avahi.enable = true;
+  services.avahi.domainName = "local";
+  services.avahi.publish.workstation = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -77,6 +82,7 @@
     description = "Bart Trojanowski";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      btop
       clang
       discord
       firefox
@@ -98,10 +104,23 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  system.autoUpgrade = {
+    enable = true;
+    dates = "*-*-* 04:00:00";
+    persistent = true;
+    allowReboot = false;
+    channel = "https://nixos.org/channels/nixos-24.11";
+  };
+
   nix = {
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "*-*-* 03:00:00";
+      options = "--delete-older-than 14d";
     };
   };
 
@@ -114,9 +133,13 @@
      fd
      fzf
      git
+     iftop
+     mfcl3770cdwlpr
      neovim
      netcat
      nix-index
+     python310
+     python313
      terminus_font
      terminus_font_ttf
      terminus-nerdfont
