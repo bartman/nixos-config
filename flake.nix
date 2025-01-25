@@ -4,7 +4,7 @@
 #
 
 {
-  description = "Nixos config flake";
+  description = "Personal NixOS/home-manager config flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,14 +17,15 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
+  let
     system = "x86_64-linux";
-  pkgs = import nixpkgs {
-    inherit nixpkgs; #.legacyPackages.${system};
-    config = { allowUnfree = true; };
-  };
-  lib = nixpkgs.lib;
-  username = "bart";
+    username = "bart";
+
+    pkgs = import nixpkgs {
+      inherit nixpkgs; #.legacyPackages.${system};
+      config = { allowUnfree = true; };
+    };
+    lib = nixpkgs.lib;
   in
   {
     nixosConfigurations = {
