@@ -84,9 +84,6 @@
     #packages = with pkgs; [ ]; # defined in bart.nix
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -121,6 +118,7 @@
      git
      iftop
      mfcl3770cdwlpr
+     mtr
      neovim
      netcat
      nix-index

@@ -41,7 +41,6 @@
     clang
     cmake
     discord
-    firefox
     # no gcc - both gcc and clang want to install bin/ld
     gdb
     gh
@@ -90,6 +89,10 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+  
+  programs.neovim.enable = true;
+  programs.neovim.vimAlias = true;
+  programs.neovim.viAlias = true;
 
   programs.btop = {
     enable = true;
@@ -98,6 +101,9 @@
       vim_keys = true;
     };
   };
+
+  # Install firefox.
+  programs.firefox.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
