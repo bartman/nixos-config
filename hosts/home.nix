@@ -1,3 +1,5 @@
+# vim: set sw=2 et
+
 { config, lib, pkgs, user, ... }:
 
 {
