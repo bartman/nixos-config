@@ -129,10 +129,18 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.ssh = {
+    enable = true;
+    compression = true;
+    controlMaster = "auto";
+    addKeysToAgent = "yes";
+  };
+  services.ssh-agent.enable = true;
+
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800;
-    enableSshSupport = true;
+    enableSshSupport = false;
   };
 }
 
