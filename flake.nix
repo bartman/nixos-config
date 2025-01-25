@@ -1,3 +1,8 @@
+# to activate, use
+# 
+#    sudo nixos-rebuild switch
+#
+
 {
   description = "Nixos config flake";
 
@@ -17,7 +22,16 @@
     in
     {
       nixosConfigurations = {
+        # configuration for each host...
         default = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [
+            ./configuration.nix
+            inputs.home-manager.nixosModules.default
+
+          ];
+        };
+        thinkpad = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [
             ./configuration.nix
