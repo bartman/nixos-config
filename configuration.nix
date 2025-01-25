@@ -81,7 +81,7 @@
     isNormalUser = true;
     description = "Bart Trojanowski";
     extraGroups = [ "networkmanager" "wheel" ];
-    #packages = with pkgs; [ ]; # defined in bart.nix
+    #packages = with pkgs; [ ]; # defined in home.nix
   };
 
   # Allow unfree packages
@@ -142,7 +142,7 @@
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "bart" = import ./bart.nix;
+      "bart" = import ./home.nix;
     };
   };
 
