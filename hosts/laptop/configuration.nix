@@ -1,9 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-# using flakes, so see flake.nix first
-
 { config, pkgs, inputs, ... }:
 
 {
@@ -49,9 +43,30 @@
   services.printing.enable = true;
   services.printing.browsed.enable = true;
 
+  # avahi
   services.avahi.enable = true;
   services.avahi.domainName = "local";
   services.avahi.publish.workstation = true;
+
+  # flatpak
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extaPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  # fonts
+  fonts.fonts = with pkgs; [
+    source-code-pro
+    font-awesome
+    corefonts
+    terminus_font
+    terminus_font_ttf
+    nerd-fonts.terminess-ttf
+    (nerdfonts.override {
+      fonts = [ "FiraCode" ];
+    })
+  ];
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -75,67 +90,22 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.bart = {
-    isNormalUser = true;
-    description = "Bart Trojanowski";
-    extraGroups = [ "networkmanager" "wheel" ];
-    #packages = with pkgs; [ ]; # defined in home.nix
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  system.autoUpgrade = {
-    enable = true;
-    dates = "*-*-* 04:00:00";
-    persistent = true;
-    allowReboot = false;
-    channel = "https://nixos.org/channels/nixos-24.11";
-  };
-
-  nix = {
-    settings = {
-      auto-optimise-store = false;
-      experimental-features = [ "nix-command" "flakes" ];
-    };
-    optimise = {
-      automatic = true;
-      dates = [ "*-*-* 05:00:00" ];
-    };
-    gc = {
-      automatic = true;
-      dates = "*-*-* 03:00:00";
-      options = "--delete-older-than 14d";
-    };
+  security = {
+    sudo.wheelNeedsPassword = false;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     bash
-     bat
-     difftastic
-     fd
-     fzf
-     git
-     iftop
-     mfcl3770cdwlpr
-     mtr
-     neovim
-     netcat
-     nix-index
-     python310
-     python313
-     terminus_font
-     terminus_font_ttf
-     nerd-fonts.terminess-ttf
-     tmux
-     tree
-     vivid
-     wget
-     zsh
-  ];
+  environment = {
+    environment = {
+      TERMINAL = "kitty";
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+    systemPackages = with pkgs; [
+      mfcl3770cdwlpr
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

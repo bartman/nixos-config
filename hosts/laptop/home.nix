@@ -1,18 +1,9 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 
 {
-  # these are set in the flake before it imports home.nix
-  #userName = home.username
-  #homeDir  = home.homeDirectory;
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11";
+  home.username = "${user.name}";
+  home.homeDirectory; = "/home/${user.name}";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -33,14 +24,17 @@
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
+    #   echo "Hello, ${config.home.user}!"
     # '')
 
     btop
     clang
     cmake
     discord
+    dunst
     # no gcc - both gcc and clang want to install bin/ld
+    feh
+    libnotify # for dunst
     gdb
     gh
     kitty
@@ -49,10 +43,37 @@
     lldb
     ripgrep
     slack
+    unzip
+    unrar
     zoom-us
     zoxide
 
   ];
+
+  xsession = {
+    enable = true;
+    numlock.enable = false;
+    pointerCursor = {
+      name = "Dracula-cursors";
+      package = pkgs.dracula-theme;
+      size = 16;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+    iconTheme = {
+      name = "papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    font = {
+      name = "FiraCode Nerd Font Mono Medium";
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -86,7 +107,9 @@
   #  /etc/profiles/per-user/bart/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+    TERMINAL = "kitty";
     EDITOR = "nvim";
+    VISUAL = "nvim";
   };
   
   programs.neovim.enable = true;
@@ -103,7 +126,5 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
+

@@ -1,3 +1,5 @@
+# vim: set sw=2 et
+
 # to activate, use
 # 
 #    sudo nixos-rebuild switch
@@ -19,7 +21,11 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     system = "x86_64-linux";
-    username = "bart";
+
+    user = {
+      name = "bart";
+      full = "Bart Trojanowski";
+    };
 
     pkgs = import nixpkgs {
       inherit nixpkgs; #.legacyPackages.${system};
@@ -28,31 +34,11 @@
     lib = nixpkgs.lib;
   in
   {
-    nixosConfigurations = {
-      # configuration for each host...
-      default = lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./configuration.nix
-            inputs.home-manager.nixosModules.default
-
-        ];
-      };
-      thinkpad = lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = { config, pkgs, ... }: {
-                home.username = username;
-                home.homeDirectory = "/home/${username}";
-                imports = [ ./home.nix ];
-              };
-          }
-        ];
-      };
-    };
+    nixosConfigurations = (
+      import ./hosts {
+        inherit (nixpkgs) lib;
+        inherit inputs user system home-manager;
+      }
+    );
   };
 }
