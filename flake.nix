@@ -8,6 +8,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,11 +20,12 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
     in
     {
       nixosConfigurations = {
         # configuration for each host...
-        default = nixpkgs.lib.nixosSystem {
+        default = lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [
             ./configuration.nix
@@ -31,7 +33,7 @@
 
           ];
         };
-        thinkpad = nixpkgs.lib.nixosSystem {
+        thinkpad = lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [
             ./configuration.nix
