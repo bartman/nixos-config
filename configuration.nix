@@ -58,7 +58,7 @@
   hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -142,7 +142,7 @@
      python313
      terminus_font
      terminus_font_ttf
-     terminus-nerdfont
+     nerd-fonts.terminess-ttf
      tmux
      tree
      vivid
