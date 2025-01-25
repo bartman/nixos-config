@@ -59,13 +59,11 @@
   fonts.packages = with pkgs; [
     source-code-pro
     font-awesome
-    corefonts
+    #corefonts
     terminus_font
     terminus_font_ttf
     nerd-fonts.terminess-ttf
-    (nerdfonts.override {
-      fonts = [ "FiraCode" ];
-    })
+    nerd-fonts.fira-mono
   ];
 
   # Enable bluetooth
