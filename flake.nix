@@ -44,7 +44,11 @@
           home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home.nix;
+              home-manager.users.${username} = { config, pkgs, ... }: {
+                home.username = username;
+                home.homeDirectory = "/home/${username}";
+                imports = [ ./home.nix ];
+              };
           }
         ];
       };

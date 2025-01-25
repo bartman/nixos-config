@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "bart";
-  home.homeDirectory = "/home/bart";
+  # these are set in the flake before it imports home.nix
+  #userName = home.username
+  #homeDir  = home.homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
