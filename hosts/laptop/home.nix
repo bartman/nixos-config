@@ -53,11 +53,11 @@
   xsession = {
     enable = true;
     numlock.enable = false;
-    pointerCursor = {
-      name = "Dracula-cursors";
-      package = pkgs.dracula-theme;
-      size = 16;
-    };
+  };
+  home.pointerCursor = {
+    name = "Dracula-cursors";
+    package = pkgs.dracula-theme;
+    size = 16;
   };
 
   gtk = {
