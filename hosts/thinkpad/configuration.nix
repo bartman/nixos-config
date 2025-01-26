@@ -93,6 +93,7 @@
   hardware.bluetooth.enable = true;
 
   # Enable sound with pipewire.
+  # https://nixos.wiki/wiki/PipeWire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -100,6 +101,8 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
+
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -126,6 +129,7 @@
     systemPackages = with pkgs; [
       mfcl3770cdwlpr
       brscan4
+      sof-firmware
     ];
   };
 

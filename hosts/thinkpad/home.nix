@@ -43,6 +43,7 @@
     kitty-img
     kitty-themes
     lldb
+    pavucontrol
     ripgrep
     slack
     unzip
