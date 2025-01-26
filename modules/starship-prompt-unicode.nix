@@ -25,19 +25,19 @@
         format = "[$ssh_symbol$hostname]($style) ";
         style = "green dimmed bold";
         ssh_only = true;
-        ssh_symbol = "s"; # unicode "🌐 ";
+        ssh_symbol = "🌐 ";
         trim_at = ".";
       };
       directory = {
         disabled = false;
         truncate_to_repo = true;
-        format = "[> $path ]($style)"; # unicode "[ﱮ $path ]($style)";
+        format = "[ﱮ $path ]($style)";
         style = "fg:#3B76F0";
       };
       nix_shell = {
         disabled = false;
         format = "[$symbol$state( \\($name\\))]($style) ";
-        symbol = "* "; # unicode "❄️  ";
+        symbol = "❄️  ";
         style = "bold blue";
         impure_msg = "impure";
         pure_msg = "pure";
@@ -45,23 +45,23 @@
       };
       shell = {
         disabled = false;
-        format = "[$indicator]($stye) ";
+        format = "[$indicator]($style) ";
         style = "white bold";
-        bash_indicator       = "b"; # unicode "฿";
-        cmd_indicator        = "c"; # unicode "𝒸";
-        elvish_indicator     = "e"; # unicode "";
-        fish_indicator       = "f"; # unicode "";
-        ion_indicator        = "i"; # unicode "𝒾";
-        nu_indicator         = "n"; # unicode "𝓃";
-        powershell_indicator = "p"; # unicode "𝓅";
-        tcsh_indicator       = "t"; # unicode "𝓉";
-        unknown_indicator    = "u"; # unicode "";
-        xonsh_indicator      = "x"; # unicode "𝓍";
-        zsh_indicator        = "z"; # unicode "𝜡";
+        bash_indicator = "฿";
+        cmd_indicator = "𝒸";
+        elvish_indicator = "";
+        fish_indicator = "";
+        ion_indicator = "𝒾";
+        nu_indicator = "𝓃";
+        powershell_indicator = "𝓅";
+        tcsh_indicator = "𝓉";
+        unknown_indicator = "";
+        xonsh_indicator = "𝓍";
+        zsh_indicator = "𝜡";
       };
       git_branch = {
         disabled = false;
-        symbol = "@"; # unicode " ";
+        symbol = " ";
         format = "[ $symbol$branch(:$remote_branch) ]($style)";
         style = "fg:#FCF392";
       };
@@ -79,7 +79,7 @@
         style = "green bold";
         commit_hash_length = 7;
         only_detached = true;
-        tag_symbol = "@"; # unicode" 🏷  ";
+        tag_symbol = " 🏷  ";
         tag_disabled = true;
         tag_max_candidates = 0;
       };
@@ -99,24 +99,24 @@
         disabled = false;
         format = "([$all_status$ahead_behind]($style) )";
         style = "red bold";
-        stashed     = "#";              # unicode "📦";
-        ahead       = ">$count";        # unicode "⬆$count";
-        behind      = "<$count";        # unicode "⬇$count";
-        up_to_date  = "";               # unicode "";
-        diverged    = "~";              # unicode "↕";
-        conflicted  = "!";              # unicode "🚫";
-        deleted     = "x";              # unicode "✘";
-        renamed     = "r";              # unicode "»";
-        modified    = "m";              # unicode "🖍️"; # 🖊🖋️🖍️
-        staged      = "+";              # unicode "+";
-        untracked   = "?";              # unicode "?";
-        typechanged = "";               # unicode "";
+        stashed = "📦";
+        ahead = "⬆$count";
+        behind = "⬇$count";
+	up_to_date = "";
+        diverged = "↕";
+        conflicted = "🚫";
+        deleted = "✘";
+        renamed = "»";
+        modified = "🖍️"; # 🖊🖋️🖍️
+        staged = "+";
+        untracked = "?";
+        typechanged = "";
         ignore_submodules = false;
       };
       character = {
-        success_symbol = "[>](bold green)";
-        vicmd_symbol = "[<](bold green)";
-        error_symbol = "[x](bold red)";
+        success_symbol = "[❯](bold green)";
+        vicmd_symbol = "[❮](bold green)";
+        error_symbol = "[✗](bold red)";
       };
     };
   };
