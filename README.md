@@ -64,6 +64,22 @@ then
         $ sudo rm -f /etc/nixos/configuration.nix
 ```
 
+## useful commands
+
+- store location where package is found
+``` sh
+$ nix eval --inputs-from ~/nixos --raw "nixpkgs#neovim"
+```
+- list all files in a package
+``` sh
+$ fd . $(nix eval --inputs-from ~/nixos --raw "nixpkgs#neovim")
+```
+- reducing space in the store
+```sh
+$ nix store gc
+$ nix store optimise
+```
+
 ## update channels
 
 NOTE: channels are not needed with flakes.  This used to be a thing, now is discouraged
