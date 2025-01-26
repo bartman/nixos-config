@@ -1,3 +1,4 @@
+# vim: set sw=2 et :
 {
   programs.starship = {                         # prompt theme engine
     enable = true;
@@ -113,9 +114,12 @@
         ignore_submodules = false;
       };
       character = {
-        success_symbol = "[❯](bold green)";
-        vicmd_symbol = "[❮](bold green)";
-        error_symbol = "[✗](bold red)";
+        #success_symbol = "[❯](bold green)";
+        #vicmd_symbol = "[❮](bold green)";
+        #error_symbol = "[✗](bold red)";
+        success_symbol = "[>](bold green)";
+        vicmd_symbol = "[<](bold green)";
+        error_symbol = "[x](bold red)";
       };
     };
   };
