@@ -84,6 +84,7 @@
       iftop
       killall
       mtr
+      netcat
       neovim
       netcat
       nix-index

@@ -74,9 +74,28 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    history.size = 100000;
+    autosuggestion = {
+      enable = true;
+      highlight = "fg=#888888";                                # "fg=#ff00ff,bg=cyan,bold,underline"
+      strategy = [ "match_prev_cmd" "history" "completion" ];
+    };
+    syntaxHighlighting = {
+      enable = true;
+      styles = {
+        builtin = "fg=blue,bold";
+        command = "fg=green,bold";
+        function = "fg=yellow,bold";
+      };
+    };
+    history = {
+      size = 100000;
+      save = 1000000;
+      expireDuplicatesFirst = true;    # append rather than replace
+      ignoreAllDups = false;           # allow historical duplicates
+      ignoreDups = true;               # don't store back-to-back duplicates
+      ignoreSpace = true;              # don't store lines that start with a space
+      share = true;                    # shared between sessions
+    };
     shellAliases = {
       nix-update = "sudo nixos-rebuild switch --flake /home/${user.name}/nixos/\\#";
     };
@@ -106,6 +125,12 @@
     '';
   };
 
+  programs.git = {
+    enable    = true;
+    userName  = "${user.full}";
+    userEmail = "${user.email}";
+  };
+
   programs.fzf = {
     enable = true;                               # fuzzy finder (ctrl-R)
     enableZshIntegration = true;
@@ -114,10 +139,17 @@
     enable = true;                               # 
     shellIntegration.enableZshIntegration = true;
   };
+  programs.eza = {                               # ls replacement
+    enable = true;
+    git = true;
+    icons = "auto";
+    extraOptions = [
+      "--group-directories-first"
+    ];
+  };
 
   programs.carapace.enable = true;               # command line completion generator
   programs.dircolors.enable = true;              # LS_COLORS
-  programs.eza.enable = true;                    # ls replacement
   programs.navi.enable = true;                   # cheat sheet for cli commands (ctrl-G)
   programs.zoxide.enable = true;                 # cd-replacement
   

@@ -23,8 +23,9 @@
       system = "x86_64-linux";
 
       user = {
-        name = "bart";
-        full = "Bart Trojanowski";
+        name  = "bart";
+        full  = "Bart Trojanowski";
+        email = "bart@jukie.net";
       };
 
       pkgs = import nixpkgs {
