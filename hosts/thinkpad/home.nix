@@ -112,6 +112,8 @@
     TERMINAL = "kitty";
     EDITOR = "nvim";
     VISUAL = "nvim";
+    # intended to start nix-shell with zsh, but does not work
+    #NIX_BUILD_SHELL = "zsh";
   };
   
   programs.neovim.enable = true;
@@ -145,6 +147,20 @@
 
   programs.zsh = {
     enable = true;
+    plugins = [
+      {
+        # https://github.com/chisui/zsh-nix-shell
+        # this plugin starts nix-shell with zsh
+        name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.8.0";
+            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+          };
+      }
+    ];
   };
 
 }
