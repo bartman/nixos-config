@@ -127,10 +127,22 @@
 
   imports = [ ../modules/starship-prompt.nix ];
 
+  programs.tmux = {
+    enable = true;
+    extraConfig = ''
+      #source ~/etc/tmux.conf
+    '';
+  };
+
   programs.git = {
     enable    = true;
     userName  = "${user.full}";
     userEmail = "${user.email}";
+    extraConfig = {
+      include = {
+        path = "~/etc/gitconfig";
+      };
+    };
   };
 
   programs.fzf = {
