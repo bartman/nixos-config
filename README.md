@@ -6,14 +6,22 @@ Note that some config files may reference `~/etc/` where I keep my custom config
 
 ## deploy config
 
+Place the configs in `~/nixos/` then run
+```sh
+	$ sudo nixos-rebuild switch --flake ~/nixos/#
+```
+or
+```sh
+	$ sudo nixos-rebuild switch --flake ~/nixos#<hostname>
+```
+
+Or, place the configs in `/etc/nixos/` then run
+
 ```sh
         $ cd /etc/nixos
         $ sudo nixos-rebuild switch
 ```
 or
-```sh
-	$ sudo nixos-rebuild switch --flake /etc/nixos#<hostname>
-```
 
 ## upgrade packages
 
@@ -41,7 +49,7 @@ then
 
 ## update channels
 
-NOTE: channels are not needed with flakes
+NOTE: channels are not needed with flakes.  This used to be a thing, now is discouraged
 
 ```sh
 	$ nix-channel --add https://nixos.org/channels/nixos-24.11
@@ -57,4 +65,4 @@ NOTE: channels are not needed with flakes
 
 - Matthias Benaets
     - https://github.com/MatthiasBenaets/nix-config
-- https://www.youtube.com/watch?v=AGVXJ-TIv3Y
+    - https://www.youtube.com/watch?v=AGVXJ-TIv3Y
