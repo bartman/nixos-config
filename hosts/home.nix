@@ -123,6 +123,20 @@
         source ~/etc/zsh/rc/S20_environment
       fi
     '';
+    plugins = [
+      {
+        # https://github.com/chisui/zsh-nix-shell
+        # this plugin starts nix-shell with zsh
+        name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.8.0";
+            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+          };
+      }
+    ];
   };
 
   imports = [ ../modules/starship-prompt.nix ];
@@ -177,24 +191,6 @@
       color_theme = "gruvbox_dark_v2";
       vim_keys = true;
     };
-  };
-
-  programs.zsh = {
-    enable = true;
-    plugins = [
-      {
-        # https://github.com/chisui/zsh-nix-shell
-        # this plugin starts nix-shell with zsh
-        name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.8.0";
-            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-          };
-      }
-    ];
   };
 
   # Let Home Manager install and manage itself.

@@ -4,7 +4,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # https://nixos.wiki/wiki/Scanners
+      #<nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix>
       ./hardware-configuration.nix
     ];
 
@@ -45,10 +47,29 @@
   services.printing.enable = true;
   services.printing.browsed.enable = true;
 
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.sane-airscan ];
+    brscan4 = {
+      enable = true;
+      netDevices = {
+        home = { model = "MFC-L3780"; ip = "192.168.2.104"; };
+      };
+    };
+  };
+
   # avahi
-  services.avahi.enable = true;
-  services.avahi.domainName = "local";
-  services.avahi.publish.workstation = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    domainName = "local";
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
+  };
 
   # flatpak
   services.flatpak.enable = true;
@@ -104,6 +125,7 @@
     };
     systemPackages = with pkgs; [
       mfcl3770cdwlpr
+      brscan4
     ];
   };
 
@@ -126,6 +148,11 @@
       PermitRootLogin = "no";
     };
   };
+
+  programs.steam = {
+    enable = true;
+  };
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
