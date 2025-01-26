@@ -1,4 +1,8 @@
-some random notes below.  probably all wrong and outdated.  need to review and cleanup.
+Some random notes below.  Probably all wrong and outdated.  Need to review and cleanup.
+
+This config can be used to rebuild my system.  You may want to replace "bart" with your name.
+
+Note that some config files may reference `~/etc/` where I keep my custom configs, not yet ported to home-manager.
 
 ## deploy config
 
@@ -51,6 +55,6 @@ NOTE: channels are not needed with flakes
 
 ## resources
 
-    - Matthias Benaets
-        - https://github.com/MatthiasBenaets/nix-config
-	- https://www.youtube.com/watch?v=AGVXJ-TIv3Y
+- Matthias Benaets
+    - https://github.com/MatthiasBenaets/nix-config
+- https://www.youtube.com/watch?v=AGVXJ-TIv3Y
