@@ -96,9 +96,9 @@
       ignoreSpace = true;              # don't store lines that start with a space
       share = true;                    # shared between sessions
     };
-    shellAliases = {
-      nix-update = "sudo nixos-rebuild switch --flake /home/${user.name}/nixos/\\#";
-    };
+    #shellAliases = {
+    #  nix-update = "sudo nixos-rebuild switch --flake /home/${user.name}/nixos/\\#";
+    #};
     initExtraBeforeCompInit = ''
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S10_zshopts
