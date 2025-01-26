@@ -18,6 +18,9 @@
             home.username = user.name;
             home.homeDirectory = "/home/${user.name}";
             imports = [ ./home.nix ./thinkpad/home.nix ];
+
+            # nix has no problems importing multiple files like above
+            # this magic [()] ++ [()] is only needed if some are directories and others are nix files
             # imports = [(import ./home.nix)] ++ [(import ./thinkpad/home.nix)];
           };
       }
