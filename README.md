@@ -83,3 +83,8 @@ NOTE: channels are not needed with flakes.  This used to be a thing, now is disc
 - Matthias Benaets
     - https://github.com/MatthiasBenaets/nix-config
     - https://www.youtube.com/watch?v=AGVXJ-TIv3Y
+- NixOS docs
+    - Packages/options: https://search.nixos.org/packages
+    - Home Manager: https://home-manager-options.extranix.com
+    - Wiki: https://nixos.wiki/wiki/Main_Page
+        - Cheatsheet: https://wiki.nixos.org/wiki/Cheatsheet
