@@ -4,6 +4,23 @@ This config can be used to rebuild my system.  You may want to replace "bart" wi
 
 Note that some config files may reference `~/etc/` where I keep my custom configs, not yet ported to home-manager.
 
+## layout
+```
+.
+├── flake.nix                                  -- top level config
+├── flake.lock                                 -- captures install hashes
+├── hosts
+│   ├── default.nix                            -- host entry point
+│   ├── configuration.nix                      -- general host config
+│   ├── home.nix                               -- home-manager config
+│   └── thinkpad
+│       ├── configuration.nix                  -- thinkpad host config
+│       ├── hardware-configuration.nix         -- thinkpad hardware config
+│       └── home.nix                           -- home-manager config
+└── modules
+    └── starship-prompt.nix                    -- starship prompt config
+```
+
 ## deploy config
 
 Place the configs in `~/nixos/` then run

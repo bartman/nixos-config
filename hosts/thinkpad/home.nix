@@ -116,18 +116,6 @@
     #NIX_BUILD_SHELL = "zsh";
   };
   
-  programs.neovim.enable = true;
-  programs.neovim.vimAlias = true;
-  programs.neovim.viAlias = true;
-
-  programs.btop = {
-    enable = true;
-    settings = {
-      color_theme = "gruvbox_dark_v2";
-      vim_keys = true;
-    };
-  };
-
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -143,24 +131,6 @@
     enable = true;
     defaultCacheTtl = 1800;
     enableSshSupport = false;
-  };
-
-  programs.zsh = {
-    enable = true;
-    plugins = [
-      {
-        # https://github.com/chisui/zsh-nix-shell
-        # this plugin starts nix-shell with zsh
-        name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.8.0";
-            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-          };
-      }
-    ];
   };
 
 }
