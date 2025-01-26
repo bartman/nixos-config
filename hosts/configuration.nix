@@ -83,6 +83,7 @@
       git
       iftop
       killall
+      make
       mtr
       netcat
       neovim
