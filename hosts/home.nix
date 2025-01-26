@@ -115,7 +115,7 @@
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S50_aliases
         source ~/etc/zsh/rc/S50_functions
-        source ~/etc/zsh/rc/S60_prompt
+        #source ~/etc/zsh/rc/S60_prompt        # using starship instead
       fi
     '';
     envExtra = ''
@@ -124,6 +124,8 @@
       fi
     '';
   };
+
+  imports = [ ../modules/starship-prompt.nix ];
 
   programs.git = {
     enable    = true;
