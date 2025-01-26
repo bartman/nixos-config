@@ -43,6 +43,7 @@
     kitty-img
     kitty-themes
     lldb
+    ninja
     pavucontrol
     ripgrep
     slack
