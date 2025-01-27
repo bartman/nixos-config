@@ -33,6 +33,8 @@
     gh
     ripgrep
 
+    zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
+
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
