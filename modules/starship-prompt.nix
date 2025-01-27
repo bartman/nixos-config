@@ -25,7 +25,7 @@
         format = "[$ssh_symbol$hostname]($style) ";
         style = "green dimmed bold";
         ssh_only = true;
-        ssh_symbol = "s"; # unicode "🌐 ";
+        ssh_symbol = "\\$ "; # unicode "🌐 ";
         trim_at = ".";
       };
       directory = {
@@ -45,8 +45,7 @@
       };
       shell = {
         disabled = false;
-        format = "[$indicator]($stye) ";
-        style = "white bold";
+        format = "[$indicator](bg:white fg:black) ";
         bash_indicator       = "b"; # unicode "฿";
         cmd_indicator        = "c"; # unicode "𝒸";
         elvish_indicator     = "e"; # unicode "";
@@ -62,7 +61,7 @@
       git_branch = {
         disabled = false;
         symbol = "@"; # unicode " ";
-        format = "[ $symbol$branch(:$remote_branch) ]($style)";
+        format = "[$symbol$branch(:$remote_branch) ]($style)";
         style = "fg:#FCF392";
       };
       git_metrics = {
@@ -79,7 +78,7 @@
         style = "green bold";
         commit_hash_length = 7;
         only_detached = true;
-        tag_symbol = "@"; # unicode" 🏷  ";
+        tag_symbol = "*"; # unicode" 🏷  ";
         tag_disabled = true;
         tag_max_candidates = 0;
       };
@@ -97,8 +96,8 @@
       };
       git_status = {
         disabled = false;
-        format = "([$all_status$ahead_behind]($style) )";
-        style = "red bold";
+        format = "([$all_status$ahead_behind]($style) )";
+        style = "bg:white fg:black";
         stashed     = "#";              # unicode "📦";
         ahead       = ">$count";        # unicode "⬆$count";
         behind      = "<$count";        # unicode "⬇$count";
@@ -115,7 +114,7 @@
       };
       character = {
         success_symbol = "[>](bold green)";
-        vicmd_symbol = "[<](bold green)";
+        vicmd_symbol = "[<](bold yellow)";
         error_symbol = "[x](bold red)";
       };
     };
