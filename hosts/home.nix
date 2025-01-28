@@ -138,10 +138,18 @@
         #source ~/etc/zsh/rc/S60_prompt        # using starship instead
       fi
 
+      # zsh-vi-mode plugin sets ^r to history-incremental-search-backward
+      # but we want to use the fzf-history-search plugin instead; good news
+      # is that zsh-vi-module provides a mechanism to do this...
+
       function my_zvm_after_lazy_keybindings() {
         bindkey -M viins '^r' fzf_history_search
       }
       zvm_after_lazy_keybindings_commands+=( my_zvm_after_lazy_keybindings )
+
+      # bad new is that the lazy keybindings dont'g get set until after
+      # we enter command mode for the first time.  but there is a fix
+      # and that is to inject our binding from the after-init hook.
 
       function my_zvm_after_init() {
         zvm_bindkey viins '^r' fzf_history_search
