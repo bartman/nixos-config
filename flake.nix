@@ -33,13 +33,30 @@
         config = { allowUnfree = true; };
       };
       lib = nixpkgs.lib;
-    in
-      {
+    in {
+
       nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
           inherit inputs user system home-manager;
         }
       );
+
+      homeConfigurations."bart" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./hosts/home.nix
+          ./hosts/thinkpad/home.nix
+        ];
+
+        extraSpecialArgs = {
+          name = "${user.name}";
+          #home = "/home/${user.name}";
+          inherit inputs user system;
+        };
+
+      };
+
     };
 }
