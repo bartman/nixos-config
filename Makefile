@@ -12,4 +12,4 @@ nixos-rebuild-switch:
 	sudo nixos-rebuild switch --flake "${PWD}#"
 
 home-manager-switch:
-	nix run home-manager -- switch --impure --show-trace --flake "${PWD}/${USER}"
+	nix run home-manager -- switch --impure --show-trace --flake "${PWD}/#${USER}"
