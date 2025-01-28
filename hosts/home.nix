@@ -88,14 +88,15 @@
       strategy = [ "match_prev_cmd" "history" "completion" ];
     };
 
-    syntaxHighlighting = {
-      enable = true;
-      styles = {
-        builtin = "fg=blue,bold";
-        command = "fg=green,bold";
-        function = "fg=yellow,bold";
-      };
-    };
+    # disabling built-in highlighting in favour of zsh-f-sy-h plugin
+    #syntaxHighlighting = {
+    #  enable = true;
+    #  styles = {
+    #    builtin = "fg=blue,bold";
+    #    command = "fg=green,bold";
+    #    function = "fg=yellow,bold";
+    #  };
+    #};
 
     history = {
       size = 100000;
