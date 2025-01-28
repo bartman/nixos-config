@@ -36,6 +36,9 @@
     dunst
     # no gcc - both gcc and clang want to install bin/ld
     feh
+    lazydocker
+    lazygit
+    lazyjournal
     libnotify # for dunst
     gdb
     gh

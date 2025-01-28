@@ -32,8 +32,7 @@
     btop
     gh
     ripgrep
-
-    zsh-vi-mode # https://github.com/jeffreytse/zsh-vi-mode
+    just        # https://github.com/casey/just
 
   ];
 
@@ -76,11 +75,19 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    historySubstringSearch.enable = true;
+    enableVteIntegration = true;
+    autocd = true;
+    defaultKeymap = "viins";
+    dotDir = ".config/zsh";
+    zprof.enable = false;
+
     autosuggestion = {
       enable = true;
       highlight = "fg=#888888";                                # "fg=#ff00ff,bg=cyan,bold,underline"
       strategy = [ "match_prev_cmd" "history" "completion" ];
     };
+
     syntaxHighlighting = {
       enable = true;
       styles = {
@@ -89,6 +96,7 @@
         function = "fg=yellow,bold";
       };
     };
+
     history = {
       size = 100000;
       save = 1000000;
@@ -98,9 +106,10 @@
       ignoreSpace = true;              # don't store lines that start with a space
       share = true;                    # shared between sessions
     };
-    #shellAliases = {
-    #  nix-update = "sudo nixos-rebuild switch --flake /home/${user.name}/nixos/\\#";
-    #};
+
+    shellAliases = {
+    };
+
     initExtraBeforeCompInit = ''
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S10_zshopts
@@ -113,13 +122,23 @@
         source ~/etc/zsh/rc/S40_completion
       fi
     '';
+
+    initExtraFirst = ''
+    '';
+
     initExtra = ''
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S50_aliases
         source ~/etc/zsh/rc/S50_functions
         #source ~/etc/zsh/rc/S60_prompt        # using starship instead
       fi
+
+      # the zsh-vi-mode module will remap a bunch of keys that we want for other modules
+      zvm_after_lazy_keybindings() {
+        zvm_bindkey viins '^R' fzf_history_search        # defined in zsh-fzf-history-search plugin
+      }
     '';
+
     envExtra = ''
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S20_environment
@@ -127,16 +146,35 @@
     '';
     plugins = [
       {
+        name = "zsh-vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+      {
+        name = "zsh-f-sy-h";
+        src = pkgs.zsh-f-sy-h;
+        file = "share/zsh/site-functions/F-Sy-H.plugin.zsh";
+      }
+      {
+        name = "zsh-fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+      {
+        name = "zsh-fzf-history-search";
+        src = pkgs.zsh-fzf-history-search;
+        file = "share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh";
+      }
+      {
+        name = "forgit";
+        src = pkgs.zsh-forgit;
+        file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
+      }
+      {
         # https://github.com/chisui/zsh-nix-shell
-        # this plugin starts nix-shell with zsh
         name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.8.0";
-            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-          };
+        src = pkgs.zsh-nix-shell;
+        file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
       }
     ];
   };
@@ -161,10 +199,6 @@
     };
   };
 
-  programs.fzf = {
-    enable = true;                               # fuzzy finder (ctrl-R)
-    enableZshIntegration = true;
-  };
   programs.kitty = {
     enable = true;                               # 
     shellIntegration.enableZshIntegration = true;

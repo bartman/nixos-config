@@ -61,7 +61,7 @@
   # avahi
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     domainName = "local";
     publish = {
       enable = true;

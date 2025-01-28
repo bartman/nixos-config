@@ -79,11 +79,14 @@
       bat
       difftastic
       fd
+      file
+      findutils
       fzf
       git
       iftop
       killall
       gnumake
+      home-manager
       mtr
       netcat
       neovim
