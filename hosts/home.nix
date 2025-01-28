@@ -128,23 +128,25 @@
     '';
 
     initExtraFirst = ''
-      function zvm_after_lazy_keybindings() {
-        echo zvm_after_lazy_keybindings
-        zvm_bindkey viins '^r' fzf_history_search
-      }
+      ZVM_LAZY_KEYBINDINGS=true
     '';
 
     initExtra = ''
-      ZVM_LAZY_KEYBINDINGS=true
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S50_aliases
         source ~/etc/zsh/rc/S50_functions
         #source ~/etc/zsh/rc/S60_prompt        # using starship instead
       fi
-      zvm_after_lazy_keybindings
-      for binding in "''${ZVM_LAZY_KEYBINDINGS_LIST[@]}" ; do
-        echo "$binding"
-      done
+
+      function my_zvm_after_lazy_keybindings() {
+        bindkey -M viins '^r' fzf_history_search
+      }
+      zvm_after_lazy_keybindings_commands+=( my_zvm_after_lazy_keybindings )
+
+      function my_zvm_after_init() {
+        zvm_bindkey viins '^r' fzf_history_search
+      }
+      zvm_after_init_commands+=( my_zvm_after_init )
     '';
 
     envExtra = ''
