@@ -110,6 +110,10 @@
     shellAliases = {
     };
 
+    sessionVariables = {
+      ZVM_LINE_INIT_MODE = "i";
+    };
+
     initExtraBeforeCompInit = ''
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S10_zshopts
@@ -124,19 +128,23 @@
     '';
 
     initExtraFirst = ''
+      function zvm_after_lazy_keybindings() {
+        echo zvm_after_lazy_keybindings
+        zvm_bindkey viins '^r' fzf_history_search
+      }
     '';
 
     initExtra = ''
+      ZVM_LAZY_KEYBINDINGS=true
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S50_aliases
         source ~/etc/zsh/rc/S50_functions
         #source ~/etc/zsh/rc/S60_prompt        # using starship instead
       fi
-
-      # the zsh-vi-mode module will remap a bunch of keys that we want for other modules
-      zvm_after_lazy_keybindings() {
-        zvm_bindkey viins '^R' fzf_history_search        # defined in zsh-fzf-history-search plugin
-      }
+      zvm_after_lazy_keybindings
+      for binding in "''${ZVM_LAZY_KEYBINDINGS_LIST[@]}" ; do
+        echo "$binding"
+      done
     '';
 
     envExtra = ''
