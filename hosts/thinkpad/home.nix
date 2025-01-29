@@ -30,31 +30,41 @@
     # '')
 
     btop
-    clang
-    cmake
-    discord
-    dunst
-    # no gcc - both gcc and clang want to install bin/ld
-    feh
+    gh
+    ripgrep
+    unzip
+    unrar
+    zoxide
+
     lazydocker
     lazygit
     lazyjournal
+
+    dunst
+    feh
     libnotify # for dunst
-    gdb
-    gh
     kitty
     kitty-img
     kitty-themes
+    pavucontrol
+
+    cargo
+    clang
+    cmake
+    # gcc - both gcc and clang want to install bin/ld
+    gdb
+    gnumake
+    go
     lldb
     ninja
-    pavucontrol
-    ripgrep
-    slack
-    unzip
-    unrar
-    zoom-us
-    zoxide
+    nodejs_23
+    zig
 
+    simple-scan
+
+    discord
+    slack
+    zoom-us
   ];
 
   xsession = {

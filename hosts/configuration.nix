@@ -84,6 +84,7 @@
       fzf
       git
       iftop
+      jq
       killall
       gnumake
       home-manager

@@ -105,14 +105,23 @@
       ignoreAllDups = false;           # allow historical duplicates
       ignoreDups = true;               # don't store back-to-back duplicates
       ignoreSpace = true;              # don't store lines that start with a space
-      share = true;                    # shared between sessions
+      share = false;                   # shared between sessions
     };
 
     shellAliases = {
+      l = "eza -al";
     };
 
     sessionVariables = {
       ZVM_LINE_INIT_MODE = "i";
+
+      # plugin default for zsh-fzf-history-search is...
+      #ZSH_FZF_HISTORY_SEARCH_FZF_ARGS = "+s +m -x -e --preview-window=hidden";
+      # +s --no-sort
+      # +m --no-multi
+      # -x --extended (enabled by default)
+      # --preview-window=hidden
+      ZSH_FZF_HISTORY_SEARCH_FZF_ARGS = "--preview-window=up,60%,border-rounded,+{2}+3/3,~3";
     };
 
     initExtraBeforeCompInit = ''
