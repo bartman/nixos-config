@@ -16,6 +16,36 @@
 
   networking.hostName = "thinkpad"; # Define your hostname.
 
+  system.autoUpgrade = {
+    enable = true;
+    dates = "*-*-* 04:00:00";
+    persistent = true;
+    allowReboot = false;
+    channel = "https://nixos.org/channels/nixos-24.11";
+  };
+
+  nix = {
+    settings = {
+      auto-optimise-store = false;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+    optimise = {
+      automatic = true;
+      dates = [ "*-*-* 05:00:00" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "*-*-* 03:00:00";
+      options = "--delete-older-than 14d";
+    };
+    #package = pkgs.nixFlakes;                     # enable nixFlakes on system
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    extraOptions = ''
+      keep-outputs      = true
+      keep-derivations  = true
+    '';
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -30,12 +60,37 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
+  # avahi
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    domainName = "local";
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
+  };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.${user.name} = {
+    isNormalUser = true;
+    description = "${user.full}";
+    shell = pkgs.zsh;
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" "camera" "lp" "scanner" "kvm" "libvirtd" "plex" ];
+    #packages = with pkgs; [ ]; # defined in home.nix
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -55,19 +110,6 @@
       netDevices = {
         home = { model = "MFC-L3780"; ip = "192.168.2.104"; };
       };
-    };
-  };
-
-  # avahi
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    domainName = "local";
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = true;
-      userServices = true;
     };
   };
 
@@ -130,18 +172,46 @@
       mfcl3770cdwlpr
       brscan4
       sof-firmware
+
+      bash
+      bat
+      difftastic
+      fd
+      file
+      findutils
+      fzf
+      git
+      iftop
+      jq
+      killall
+      gnumake
+      home-manager
+      netcat
+      neovim
+      netcat
+      nix-index
+      pciutils
+      python310
+      python313
+      tmux
+      tree
+      vivid
+      usbutils
+      wget
     ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
 
   # List services that you want to enable:
+
+  programs.zsh.enable = true;
+  programs.mtr.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -156,7 +226,6 @@
   programs.steam = {
     enable = true;
   };
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

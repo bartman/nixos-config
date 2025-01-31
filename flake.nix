@@ -46,7 +46,6 @@
         inherit pkgs;
 
         modules = [
-          ./hosts/home.nix
           ./hosts/thinkpad/home.nix
         ];
 

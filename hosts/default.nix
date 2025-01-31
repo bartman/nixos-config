@@ -7,7 +7,6 @@
     inherit system;
     specialArgs = {inherit user inputs;};
     modules = [
-      ./configuration.nix
       ./thinkpad/configuration.nix
       home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
@@ -17,7 +16,7 @@
           home-manager.users.${user.name} = { config, pkgs, user, ... }: {
             home.username = user.name;
             home.homeDirectory = "/home/${user.name}";
-            imports = [ ./home.nix ./thinkpad/home.nix ];
+            imports = [ ./thinkpad/home.nix ];
 
             # nix has no problems importing multiple files like above
             # this magic [()] ++ [()] is only needed if some are directories and others are nix files
