@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "thinkpad"; # Define your hostname.
+  networking.hostName = "thinkpad";
 
   system.autoUpgrade = {
     enable = true;
@@ -87,6 +87,11 @@
     shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" "video" "audio" "camera" "lp" "scanner" "kvm" "libvirtd" "plex" ];
     #packages = with pkgs; [ ]; # defined in home.nix
+
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxizMgQGRBkdxDAtpIU6+4kzbvUO2/zokQN1G1q/SHrzVkaahg/kuBHQAK1kfsN1C4XfwZ8t+uMUe7RB/FQAGu9/PvKXzZUtM/jFXKXx3wrXf0JMxnzTdV3JwqvceTpd3MYYpUW50vBsogPP1MzhSVHaE+p0VF13LW9AVqLkpZW3u7jx/1jTJB0K8uBoZdCTi+Unto40nHVU4yVbOBmC8n7uXowuaBqzMNgVtjoXBBFuvIUvpws1/fiRTkwCaqAExIbZQOOQCVEunKOe/OlKX+1KDe9ozoBErzfawqKsqUvMTDrz9lnSg7+WXpZWXq7vW5tIF3hstDcvpAFnOGNvc9q17aK8x1t2wlrhil5rJ2fJgLinfCbrApd0TaVw5PAQfy1SnA9/ZcKr5Qh91wTIPPyfOOvLxaxuASFNObmvBMCsIWrFN+HZPAf21mwI1kagYwcAnWuDdm/gaLr2XrGaUETA//CmurNjsipryjTJazieu1YZIrplQyiQ0rBDDOAx8d/jcShi891uc6bcYmWcW9bPlyYJ3PL2hVzhsYfndq8wUS4x7WDXRdt0ppCKTMkEKTtR+A7iA03+VEX3o87fl+tQiy6/2KUhIoRTdl5LM4oK85NuD8lb6/yivQCdbIENVfwVL1MJwF0xTsISGzqcwQPkQgqXnl2a4q4qJQSZv7dQ== bart@oxygen.jukie.net"
+      "ssh-dss AAAAB3NzaC1kc3MAAACBAPUeU2wMGy1ftHDuh6wchqzm4hhAAbJqhHKlQKqpf4dduMzjIoewQA3sZfV2yQnxezTcIFWz1ewVMYbfzzMf7Ozdo2j0zIuolwAof+NMEExSyFXcby7lvnfVbgKR/4hOex04nAB8aZi9sZY1KvM962pME8znz4l07pkOQdDX5s7NAAAAFQDWHyx21lr6uHSClTEJAKdWgtuSBwAAAIBnYm4XfsWcrBn8jjD/FWykSIfgycdKFenN4HxK4iH4/5bdibOZDYkX2l5ExIt/wq9RRbTamkfOYmm0xbXrpuSo1HSfTSIxrQOorE30jJOf/c/ze3Wo5FWx3yDOEym8PiB3yfGtlf6DWhs4/gz7bGHL90FQkqjToxCtmrmcr746RQAAAIAeiTvQYBoU0Weg4niUte+EdxzJxEu8y+LyBK2hFr88fv2FVI2SQ5iUqRQwCWhJ9ZiDAjOHAtHWEQAboccaH1y8XXfHmhB4SOJCZ92JhNnKx8dAWWxdEogYbqFHkZTUb/HsOE8Wt9KdV9ZWvnfPMwDM1dJVCSUCiWWJ/YS8TeizKw== bart@oxygen.jukie.net"
+    ];
   };
 
   # Allow unfree packages
