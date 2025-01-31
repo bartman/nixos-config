@@ -24,10 +24,18 @@
     channel = "https://nixos.org/channels/nixos-24.11";
   };
 
-  nix = {
+  nix = let
+    users = [ "root" user.name ];
+  in {
     settings = {
       auto-optimise-store = false;
       experimental-features = [ "nix-command" "flakes" ];
+      http-connections = 50;
+      warn-dirty = false;
+      log-lines = 50;
+      sandbox = "relaxed";
+      trusted-users = users;
+      allowed-users = users;
     };
     optimise = {
       automatic = true;
