@@ -44,7 +44,7 @@
         }
       );
 
-      homeConfigurations."bart" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."bart@thinkpad" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [
