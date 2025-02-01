@@ -26,6 +26,8 @@
         name  = "bart";
         full  = "Bart Trojanowski";
         email = "bart@jukie.net";
+        plasma.enable = true;
+        hyprland.enable = false;
       };
 
       pkgs = import nixpkgs {

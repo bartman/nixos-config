@@ -12,41 +12,24 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.user}!"
     # '')
 
-    btop
-    gh
+    gh          # github
     ripgrep
     unzip
     unrar
-    zoxide
 
     lazydocker
     lazygit
     lazyjournal
 
-    dunst
-    feh
-    libnotify # for dunst
     kitty
     kitty-img
     kitty-themes
     pavucontrol
+    simple-scan
 
     cargo
     clang
@@ -60,8 +43,6 @@
     ninja
     nodejs_23
     zig
-
-    simple-scan
 
     discord
     slack
@@ -184,7 +165,7 @@
       # +m --no-multi
       # -x --extended (enabled by default)
       # --preview-window=hidden
-      ZSH_FZF_HISTORY_SEARCH_FZF_ARGS = "--preview-window=up,60%,border-rounded,+{2}+3/3,~3";
+      ZSH_FZF_HISTORY_SEARCH_FZF_ARGS = "+s +m --preview-window=up,60%,border-rounded,+{2}+3/3,~3";
     };
 
     initExtraBeforeCompInit = ''
@@ -326,13 +307,72 @@
     controlMaster = "auto";
     addKeysToAgent = "yes";
   };
-  services.ssh-agent.enable = true;
 
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = false;
-  };
+  services = {
+    ssh-agent.enable = true;
+    gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = false;
+    };
+  } // 
+      (if user.hyprland.enable then {
+          copyq.enable = true;
+          hyprpaper.enable = true;
+          swayidle = let
+            lockCommand = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+            dpmsCommand = "${pkgs.hyprland}/bin/hyprctl dispatch dpms";
+          in {
+            enable = true;
+            systemdTarget = "graphical-session.target";
+            timeouts = [
+              {
+                timeout = 300;
+                command = lockCommand;
+              }
+              {
+                timeout = 600;
+                command = "${dpmsCommand} off";
+                resumeCommand = "${dpmsCommand} on";
+              }
+            ];
+            events = [
+              {
+                event = "before-sleep";
+                command = lockCommand;
+              }
+              {
+                event = "lock";
+                command = lockCommand;
+              }
+            ];
+          };
+          dunst.enable = false;
+          mako.enable = false;
+          swaync = {
+            enable = true;
+            style = ''
+              .notification-row {
+                outline: none;
+              }
+
+              .notification-row:focus,
+              .notification-row:hover {
+                background: @noti-bg-focus;
+              }
+
+              .notification {
+                border-radius: 12px;
+                margin: 6px 12px;
+                box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
+                  0 2px 6px 2px rgba(0, 0, 0, 0.3);
+                padding: 0;
+              }
+            '';
+          };
+    } else {});
+
+  systemd.user.startServices = "sd-switch";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

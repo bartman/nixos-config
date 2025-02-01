@@ -86,7 +86,20 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
+  services.xserver.desktopManager.plasma5.enable = user.plasma.enable;
+
+  programs.hyprland = {
+    enable = user.hyprland.enable;
+    xwayland.enable = true;
+    #withUWSM = true;
+  };
+
+  hardware = {
+    graphics.enable = true;
+    #amdgpu.amdvlk.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user.name} = {
@@ -181,10 +194,17 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
+
+    sessionVariables = if user.hyprland.enable then {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+    } else {};
+
     systemPackages = with pkgs; [
       mfcl3770cdwlpr
       brscan4
       sof-firmware
+      pritunl-client
 
       bash
       bat
@@ -204,14 +224,32 @@
       netcat
       nix-index
       pciutils
+      procps
       python310
       python313
+      socat
       tmux
       tree
-      vivid
+      vivid       # LS_COLORS
       usbutils
       wget
-    ];
+      xh          # like curl + jq
+
+    ] ++
+      (if user.hyprland.enable then with pkgs; [
+        kitty
+        feh
+        #libnotify
+        waybar
+        #dunst
+        #mako
+        swww
+        wofi
+        swaylock
+        swayidle
+        networkmanagerapplet
+        mesa-demos
+      ] else []);
   };
 
   # Some programs need SUID wrappers, can be configured further or are
