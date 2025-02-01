@@ -1,5 +1,6 @@
 PWD  = $(shell pwd)
 USER = $(shell id -u -n)
+HOST = $(shell hostname)
 
 FOUND_NIXOS_REBUILD = $(shell which nixos-rebuild 2>/dev/null)
 
@@ -17,5 +18,4 @@ ${NIXOS_REBUILD_ACTIONS}: nixos-rebuild/%:
 	sudo nixos-rebuild $(notdir $@) --flake "${PWD}#"
 
 ${HOME_MANAGER_ACTIONS}: home-manager/%:
-	nix run home-manager -- $(notdir $@) --impure --show-trace --flake "${PWD}/#${USER}"
-
+	nix run home-manager -- $(notdir $@) --impure --show-trace --flake "${PWD}/#${USER}@${HOST}"
