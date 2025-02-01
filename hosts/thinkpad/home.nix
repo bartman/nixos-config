@@ -21,6 +21,8 @@
     unzip
     unrar
 
+    speedtest
+
     lazydocker
     lazygit
     lazyjournal
@@ -30,6 +32,12 @@
     kitty-themes
     pavucontrol
     simple-scan
+
+    git-lfs
+    git-fame     # commit stats
+    git-gone     # remove stale branches
+    git-radar    # status generator, TODO: integrate into starship prompt
+    git-igitt    # better git-graph, TUI
 
     cargo
     clang
@@ -313,9 +321,11 @@
       untether = {
         host = "*.untetherai.com";
         user = "bartt";
-        #ControlMaster = "auto";
-        #TCPKeepAlive = "yes";
-        #SetEnv = "TERM=xterm-256color";
+        extraOptions = {
+          ControlMaster = "auto";
+          TCPKeepAlive = "yes";
+          SetEnv = "TERM=xterm-256color";
+        };
       };
     };
   };
