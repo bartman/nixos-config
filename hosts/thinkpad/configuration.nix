@@ -90,15 +90,16 @@
 
   services.xserver.desktopManager.plasma5.enable = user.plasma.enable;
 
-  programs.hyprland = {
-    enable = user.hyprland.enable;
+  programs.hyprland = if user.hyprland.enable then {
+    enable = true;
     xwayland.enable = true;
     #withUWSM = true;
-  };
+  } else {};
 
   hardware = {
     graphics.enable = true;
-    #amdgpu.amdvlk.enable = true;
+    amdgpu.amdvlk.enable = true;
+    amdgpu.amdvlk.support32Bit.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -273,6 +274,9 @@
       PermitRootLogin = "no";
     };
   };
+
+  systemd.packages = [ pkgs.pritunl-client ];
+  systemd.targets.multi-user.wants = [ "pritunl-client.service" ];
 
   programs.steam = {
     enable = true;

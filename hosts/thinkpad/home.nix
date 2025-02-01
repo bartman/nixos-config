@@ -274,6 +274,8 @@
   programs.kitty = {
     enable = true;                               # 
     shellIntegration.enableZshIntegration = true;
+    font.name = "Terminus (TTF)";
+    font.size = 9.0;
   };
   programs.eza = {                               # ls replacement
     enable = true;
@@ -306,6 +308,16 @@
     compression = true;
     controlMaster = "auto";
     addKeysToAgent = "yes";
+
+    matchBlocks = {
+      untether = {
+        host = "*.untetherai.com";
+        user = "bartt";
+        #ControlMaster = "auto";
+        #TCPKeepAlive = "yes";
+        #SetEnv = "TERM=xterm-256color";
+      };
+    };
   };
 
   services = {
