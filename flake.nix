@@ -20,7 +20,7 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
+      system = if builtins ? currentSystem then builtins.currentSystem else "x86_64-linux";
 
       user = {
         name  = "bart";
