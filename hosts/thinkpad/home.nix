@@ -36,7 +36,7 @@
     git-lfs
     git-fame     # commit stats
     git-gone     # remove stale branches
-    git-radar    # status generator, TODO: integrate into starship prompt
+    #git-radar   # status generator, looks like powerlevel10k already does this
     git-igitt    # better git-graph, TUI
 
     cargo
@@ -197,8 +197,10 @@
       if [ -d ~/etc/zsh/rc/ ] ; then
         source ~/etc/zsh/rc/S50_aliases
         source ~/etc/zsh/rc/S50_functions
-        #source ~/etc/zsh/rc/S60_prompt        # using starship instead
+        #source ~/etc/zsh/rc/S60_prompt        # using powerlevel10k instead (starship was too slow)
       fi
+
+      # -- vi-mode delayed loading
 
       # zsh-vi-mode plugin sets ^r to history-incremental-search-backward
       # but we want to use the fzf-history-search plugin instead; good news
@@ -217,6 +219,11 @@
         zvm_bindkey viins '^r' fzf_history_search
       }
       zvm_after_init_commands+=( my_zvm_after_init )
+
+      # -- prompt, powerlevel10k
+
+      source ~/.p10k.zsh
+
     '';
 
     envExtra = ''
@@ -225,6 +232,11 @@
       fi
     '';
     plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
       {
         name = "zsh-vi-mode";
         src = pkgs.zsh-vi-mode;
@@ -266,7 +278,8 @@
     '';
   };
 
-  imports = [ ../../modules/starship-prompt.nix ];
+  # nice, but slower than powerlevel10k
+  #imports = [ ../../modules/starship-prompt.nix ];
 
   programs.git = {
     enable    = true;
