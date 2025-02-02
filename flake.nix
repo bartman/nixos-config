@@ -20,8 +20,6 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      system = if builtins ? currentSystem then builtins.currentSystem else "x86_64-linux";
-
       user = {
         name  = "bart";
         full  = "Bart Trojanowski";
@@ -30,25 +28,40 @@
         hyprland.enable = false;
       };
 
-      pkgs = import nixpkgs {
-        inherit nixpkgs; #.legacyPackages.${system};
-        config = { allowUnfree = true; };
-      };
-      lib = nixpkgs.lib;
+      #lib = nixpkgs.lib;
     in {
-
       nixosConfigurations = (
         import ./hosts {
+          system = if builtins ? currentSystem then builtins.currentSystem else "x86_64-linux";
           inherit (nixpkgs) lib;
-          inherit inputs user system home-manager;
+          inherit inputs user home-manager;
         }
       );
 
-      homeConfigurations."bart@thinkpad" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations."bart@thinkpad" = let
+        system = "x86_64-linux";
+      in home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
 
         modules = [
           ./hosts/thinkpad/home.nix
+        ];
+
+        extraSpecialArgs = {
+          name = "${user.name}";
+          #home = "/home/${user.name}";
+          inherit inputs user system;
+        };
+
+      };
+
+      homeConfigurations."bart@raspberrypi" = let
+        system = "aarch64-linux";
+      in home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+
+        modules = [
+          ./hosts/raspberrypi/home.nix
         ];
 
         extraSpecialArgs = {
