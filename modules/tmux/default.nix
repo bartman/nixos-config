@@ -15,6 +15,7 @@
   # clone https://git::@github.com/tmux-plugins/tpm to ~/.config/tmux/plugins/tpm/
 
   home.activation.tmuxActivation = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    export PATH="${lib.makeBinPath (with pkgs; [ git ])}:$PATH"
     run "${builtins.toPath ./activation.sh}"
   '';
 
