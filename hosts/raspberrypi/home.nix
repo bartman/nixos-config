@@ -34,8 +34,7 @@
     nix-index
     pciutils
     procps
-    python310
-    #python313
+    python313
     socat
     tmux
     tree
