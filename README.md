@@ -55,7 +55,12 @@ on some other system, like Ubuntu or Debian.  I wanted a single repo where I can
 │   └── raspberrypi
 │       └── home.nix                           -- home-manager config
 └── modules
-    └── starship-prompt.nix                    -- starship prompt config
+    ├── starship-prompt.nix                    -- starship prompt config
+    └── tmux
+        ├── default.nix                        -- tmux config management
+        ├── activation.sh                      -- activation helper script
+        ├── _tmux.conf                         -- hand crafted config
+        └── _tmux/                             -- support files
 ```
 
 ## the Makefile
