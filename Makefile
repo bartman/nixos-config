@@ -33,5 +33,5 @@ home-manager/init:
 	${RUN} nix run home-manager -- init
 
 ${HOME_MANAGER_ACTIONS}: home-manager/%:
-	${RUN} nix run home-manager -- $(subst $(notdir $@),test,instantiate) ${IMPURE} ${TRACE} --flake "${PWD}/#${USER}@${HOST}"
+	${RUN} nix run home-manager -- $(subst test,instantiate,$(notdir $@)) ${IMPURE} ${TRACE} --flake "${PWD}/#${USER}@${HOST}"
 
