@@ -16,6 +16,32 @@
     #   echo "Hello, ${config.home.user}!"
     # '')
 
+    bash
+    bat
+    difftastic
+    fd
+    file
+    findutils
+    fzf
+    git
+    iftop
+    jq
+    killall
+    gnumake
+    netcat
+    netcat
+    nix-index
+    pciutils
+    procps
+    python313
+    socat
+    tmux
+    tree
+    vivid       # LS_COLORS
+    usbutils
+    wget
+    xh          # like curl + jq
+
     gh          # github
     ripgrep
     unzip
