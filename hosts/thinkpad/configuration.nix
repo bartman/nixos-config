@@ -207,35 +207,6 @@
       sof-firmware
       pritunl-client
 
-      bash
-      bat
-      difftastic
-      fd
-      file
-      findutils
-      fzf
-      git
-      iftop
-      jq
-      killall
-      gnumake
-      home-manager
-      netcat
-      neovim
-      netcat
-      nix-index
-      pciutils
-      procps
-      python310
-      python313
-      socat
-      tmux
-      tree
-      vivid       # LS_COLORS
-      usbutils
-      wget
-      xh          # like curl + jq
-
     ] ++
       (if user.hyprland.enable then with pkgs; [
         kitty
