@@ -1,25 +1,98 @@
+# This project
+
+This repo captures the configuration for my machines running NixOS, or just home-manager
+on some other system, like Ubuntu or Debian.  I wanted a single repo where I can run
+`make` to do the right thing to update my configuration.
+
+## TL;DR
+
+*I'm new, but I don't want to read.*
+
+- edit configuration
+  - edit `flake.nix` this is where the hosts/user are defined
+  - populate `hosts` directory accordingly
+    - all hosts have a `home.nix` for `home-manager`
+    - NixOS hosts have a `configuration.nix` and `hardware-configuration.nix` as well
+  - run `git grep bart` ... edit those files, set your name
+- if you're not on NixOS...
+  - Debian or Ubuntu...
+    ```sh
+    sudo apt install nix-bin nix-setup-systemd
+    sudo adduser $(id -n -u) nix-users
+    sudo systemctl start nix-daemon.service
+    ```
+  - anything else...
+    ```sh
+    sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+    curl -L https://nixos.org/nix/install | sh
+    ```
+  - then initialize your `~/.config/home-manager/` files...
+    ```sh
+    make init
+    ```
+- then deploy the configuration
+    ```sh
+    make
+    ```
+
+## hosts
+
+- `thinkpad` is my laptop (*amd64*)
+- `raspberrypi` is my laptop (*aarch64*)
+
+## layout
+```
+.
+├── Makefile                                   -- launch script
+├── flake.nix                                  -- top level config
+├── flake.lock                                 -- captures install hashes
+├── hosts
+│   ├── default.nix                            -- host entry point
+│   ├── thinkpad
+│   │   ├── configuration.nix                  -- thinkpad host config
+│   │   ├── hardware-configuration.nix         -- thinkpad hardware config
+│   │   └── home.nix                           -- home-manager config
+│   └── raspberrypi
+│       └── home.nix                           -- home-manager config
+└── modules
+    └── starship-prompt.nix                    -- starship prompt config
+```
+
+## the Makefile
+
+The Makefile just serves as a script that executes the `nixos-rebuild` or `home-manager`
+commands with the appropriate options.  The following targets are available:
+
+| command       | what it does |
+|---------------|--------------|
+| make          | same as switch rule |
+| make DRYRUN=1 | only print what woudl be ran |
+| make init     | initialize non-NixOS for `home-manager` |
+| make build    | only build   |
+| make test     | build and test |
+| make switch   | build and switch to it |
+
+
+On NixOS, this runs...
+```sh
+sudo nixos-rebuild ${ACTION} --flake "${PWD}#"
+```
+
+If it's something else it runs...
+```sh
+nix run home-manager -- ${ACTION} --flake "${PWD}/#${USER}@${HOST}"
+```
+
+
+
+
+# NOTES
+
 Some random notes below.  Probably all wrong and outdated.  Need to review and cleanup.
 
 This config can be used to rebuild my system.  You may want to replace "bart" with your name.
 
 Note that some config files may reference `~/etc/` where I keep my custom configs, not yet ported to home-manager.
-
-## layout
-```
-.
-├── flake.nix                                  -- top level config
-├── flake.lock                                 -- captures install hashes
-├── hosts
-│   ├── default.nix                            -- host entry point
-│   ├── configuration.nix                      -- general host config
-│   ├── home.nix                               -- home-manager config
-│   └── thinkpad
-│       ├── configuration.nix                  -- thinkpad host config
-│       ├── hardware-configuration.nix         -- thinkpad hardware config
-│       └── home.nix                           -- home-manager config
-└── modules
-    └── starship-prompt.nix                    -- starship prompt config
-```
 
 ## deploy config
 
@@ -94,7 +167,7 @@ NOTE: channels are not needed with flakes.  This used to be a thing, now is disc
 	unpacking 1 channels...
 ```
 
-## resources
+# resources
 
 - Matthias Benaets
     - https://github.com/MatthiasBenaets/nix-config

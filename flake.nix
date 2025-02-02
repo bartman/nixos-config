@@ -28,8 +28,10 @@
         hyprland.enable = false;
       };
 
-      #lib = nixpkgs.lib;
     in {
+
+      # ---- nixos configurations ----
+
       nixosConfigurations = (
         import ./hosts {
           system = if builtins ? currentSystem then builtins.currentSystem else "x86_64-linux";
@@ -37,6 +39,8 @@
           inherit inputs user home-manager;
         }
       );
+
+      # ---- home-manager configurations ----
 
       homeConfigurations."bart@thinkpad" = let
         system = "x86_64-linux";
