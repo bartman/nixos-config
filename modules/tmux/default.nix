@@ -5,6 +5,8 @@
   programs.tmux = {
     enable = true;
     extraConfig = builtins.readFile ./_tmux.conf;
+    terminal = "xterm-256color";
+    keyMode = "vi";
   };
 
   home.file.".config/tmux" = {
