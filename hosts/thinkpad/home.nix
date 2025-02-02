@@ -17,7 +17,6 @@
     # '')
 
     bash
-    bat
     difftastic
     fd
     file
@@ -321,6 +320,7 @@
     font.name = "Terminus (TTF)";
     font.size = 9.0;
   };
+
   programs.eza = {                               # ls replacement
     enable = true;
     git = true;
@@ -328,6 +328,13 @@
     extraOptions = [
       "--group-directories-first"
     ];
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
   };
 
   programs.carapace.enable = true;               # command line completion generator

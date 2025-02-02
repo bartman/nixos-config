@@ -18,7 +18,6 @@
     # '')
 
     bash
-    bat
     difftastic
     fd
     file
@@ -283,6 +282,13 @@
     extraOptions = [
       "--group-directories-first"
     ];
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
   };
 
   programs.carapace.enable = true;               # command line completion generator
