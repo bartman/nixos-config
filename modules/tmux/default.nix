@@ -7,7 +7,7 @@
     extraConfig = builtins.readFile ./_tmux.conf;
     terminal = "xterm-256color";
     keyMode = "vi";
-    shell = "\${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.zsh}/bin/zsh";
   };
 
   home.file.".config/tmux" = {
