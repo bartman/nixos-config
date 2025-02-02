@@ -164,16 +164,16 @@
     };
 
     initExtraBeforeCompInit = ''
-     #if [ -d ~/etc/zsh/rc/ ] ; then
-     #  source ~/etc/zsh/rc/S10_zshopts
-     #  source ~/etc/zsh/rc/S11_help
-     #  source ~/etc/zsh/rc/S11_history
-     #  source ~/etc/zsh/rc/S20_environment
-     #  source ~/etc/zsh/rc/S20_openai_key
-     #  source ~/etc/zsh/rc/S20_xai_key
-     #  source ~/etc/zsh/rc/S30_binds
-     #  source ~/etc/zsh/rc/S40_completion
-     #fi
+      if [ -d ~/etc/zsh/rc/ ] ; then
+        source ~/etc/zsh/rc/S10_zshopts
+        source ~/etc/zsh/rc/S11_help
+        source ~/etc/zsh/rc/S11_history
+        source ~/etc/zsh/rc/S20_environment
+        source ~/etc/zsh/rc/S20_openai_key
+        source ~/etc/zsh/rc/S20_xai_key
+        source ~/etc/zsh/rc/S30_binds
+        source ~/etc/zsh/rc/S40_completion
+      fi
     '';
 
     initExtraFirst = ''
@@ -181,11 +181,11 @@
     '';
 
     initExtra = ''
-     #if [ -d ~/etc/zsh/rc/ ] ; then
-     #  source ~/etc/zsh/rc/S50_aliases
-     #  source ~/etc/zsh/rc/S50_functions
-     #  #source ~/etc/zsh/rc/S60_prompt        # using powerlevel10k instead (starship was too slow)
-     #fi
+      if [ -d ~/etc/zsh/rc/ ] ; then
+        source ~/etc/zsh/rc/S50_aliases
+        source ~/etc/zsh/rc/S50_functions
+        #source ~/etc/zsh/rc/S60_prompt        # using powerlevel10k instead (starship was too slow)
+      fi
 
       # -- vi-mode delayed loading
 
@@ -214,9 +214,9 @@
     '';
 
     envExtra = ''
-     #if [ -d ~/etc/zsh/rc/ ] ; then
-     #  source ~/etc/zsh/rc/S20_environment
-     #fi
+      if [ -d ~/etc/zsh/rc/ ] ; then
+        source ~/etc/zsh/rc/S20_environment
+      fi
     '';
     plugins = [
       {
@@ -280,7 +280,7 @@
   };
 
   programs.eza = {                               # ls replacement
-    enable = false;
+    enable = true;
     git = true;
     icons = "auto";
     extraOptions = [
