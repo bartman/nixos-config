@@ -51,6 +51,8 @@
     lazydocker
     lazygit
     lazyjournal
+    timg       # show images in terminal (kitty)
+    termtosvg
 
     kitty
     kitty-img
