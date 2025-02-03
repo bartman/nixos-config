@@ -6,14 +6,14 @@ on some other system, like Ubuntu or Debian.  I wanted a single repo where I can
 
 ## TL;DR
 
-*I'm new, but I don't want to read.*
+Quick instructions on how to use this.
 
 - edit configuration
   - edit `flake.nix` this is where the hosts/user are defined
-  - populate `hosts` directory accordingly
+  - populate `hosts` directory accordingly (rename the host directories)
     - all hosts have a `home.nix` for `home-manager`
     - NixOS hosts have a `configuration.nix` and `hardware-configuration.nix` as well
-  - run `git grep bart` ... edit those files, set your name
+  - run `git grep -e bart -e thinkpad -e raspberrypi` ... edit those files, set your username/hostname
 - if you're not on NixOS...
   - Debian or Ubuntu...
     ```sh
@@ -41,6 +41,12 @@ on some other system, like Ubuntu or Debian.  I wanted a single repo where I can
 - `raspberrypi` is my laptop (*aarch64*)
 
 ## layout
+
+I have two systems in the config right now.
+
+- `thinkpad` is an x86-64 system running full NixOS install.
+- `raspberrypi` is an aarch64 system running Ubuntu, with Nix installed with apt.
+
 ```
 .
 ├── Makefile                                   -- launch script
@@ -55,7 +61,12 @@ on some other system, like Ubuntu or Debian.  I wanted a single repo where I can
 │   └── raspberrypi
 │       └── home.nix                           -- home-manager config
 └── modules
-    └── starship-prompt.nix                    -- starship prompt config
+    ├── starship-prompt.nix                    -- starship prompt config
+    └── tmux
+        ├── default.nix                        -- tmux config management
+        ├── activation.sh                      -- activation helper script
+        ├── _tmux.conf                         -- hand crafted config
+        └── _tmux/                             -- support files
 ```
 
 ## the Makefile

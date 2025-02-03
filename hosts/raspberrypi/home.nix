@@ -18,7 +18,6 @@
     # '')
 
     bash
-    bat
     difftastic
     fd
     file
@@ -258,15 +257,12 @@
     ];
   };
 
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-      #source ~/etc/tmux.conf
-    '';
-  };
+  imports = [
 
-  # nice, but slower than powerlevel10k
-  #imports = [ ../../modules/starship-prompt.nix ];
+    (import ../../modules/tmux {inherit config lib pkgs;})
+
+    # ../../modules/starship-prompt/ascii.nix # prompt generator, slower than powerlevel10k
+  ];
 
   programs.git = {
     enable    = true;
@@ -286,6 +282,13 @@
     extraOptions = [
       "--group-directories-first"
     ];
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
   };
 
   programs.carapace.enable = true;               # command line completion generator
