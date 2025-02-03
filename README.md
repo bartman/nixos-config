@@ -37,15 +37,23 @@ Quick instructions on how to use this.
 
 ## hosts
 
-- `thinkpad` is my laptop (*amd64*)
-- `raspberrypi` is my laptop (*aarch64*)
-
-## layout
-
 I have two systems in the config right now.
 
-- `thinkpad` is an x86-64 system running full NixOS install.
-- `raspberrypi` is an aarch64 system running Ubuntu, with Nix installed with apt.
+- `thinkpad` is my laptop (*amd64*) running NixOS 24.11
+- `raspberrypi` small Arm board (*aarch64*) running Ubuntu w/ home-manager installed via `apt`
+
+Both are using "unstalbe" channel of `nixpkgs`.
+
+## what it icnludes
+
+Things that I have configured are:
+- zsh using vi key bindings, good completion, recursive search using fzf, and a nice git-aware prompt.
+- tmux, but with screen shortcuts, some plugins, etc.
+  (tpm wants you to push `Ctrl-a i` to download/install plugins on the first run).
+- desktop running Steam, Discord, Slack, and Zoom.  Can print/scan using my Brother printer.
+- started configuring hyprland, but ran into issues, so it's disabled by default
+
+## layout
 
 ```
 .
