@@ -59,7 +59,11 @@
     kitty
     kitty-img
     kitty-themes
+
     pavucontrol
+    pulseaudio
+    pulseaudio-ctl
+
     simple-scan
 
     git-lfs
@@ -322,7 +326,7 @@
     enable = true;                               # 
     shellIntegration.enableZshIntegration = true;
     font.name = "Terminus (TTF)";
-    font.size = 9.0;
+    font.size = 9;
   };
 
   programs.eza = {                               # ls replacement
@@ -374,6 +378,13 @@
           SetEnv = "TERM=xterm-256color";
         };
       };
+    };
+  };
+
+  programs = {
+    waybar = {
+      enable = true;
+      systemd.enable = true;
     };
   };
 
@@ -440,6 +451,8 @@
             '';
           };
     } else {});
+
+  wayland.windowManager.hyprland.systemd.enable = user.hyprland.enable && ! user.hyprland.withUWSM;
 
   systemd.user.startServices = "sd-switch";
 

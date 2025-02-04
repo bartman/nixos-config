@@ -14,6 +14,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      #url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -24,8 +25,9 @@
         name  = "bart";
         full  = "Bart Trojanowski";
         email = "bart@jukie.net";
-        plasma.enable = true;
-        hyprland.enable = false;
+        plasma.enable = false;
+        hyprland.enable = true;
+        hyprland.withUWSM = true;
       };
 
     in {

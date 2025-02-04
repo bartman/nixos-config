@@ -93,7 +93,7 @@
   programs.hyprland = if user.hyprland.enable then {
     enable = true;
     xwayland.enable = true;
-    #withUWSM = true;
+    withUWSM = user.hyprland.withUWSM;
   } else {};
 
   hardware = {
@@ -163,7 +163,9 @@
 
   # Enable sound with pipewire.
   # https://nixos.wiki/wiki/PipeWire
+
   services.pulseaudio.enable = false;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -208,6 +210,8 @@
       sof-firmware
       pritunl-client
 
+      zenstates # https://github.com/r4m0n/ZenStates-Linux
+
     ] ++
       (if user.hyprland.enable then with pkgs; [
         kitty
@@ -249,6 +253,18 @@
 
   systemd.packages = [ pkgs.pritunl-client ];
   systemd.targets.multi-user.wants = [ "pritunl-client.service" ];
+
+  # disable Ryzen c6 state before sleep
+  # https://discourse.nixos.org/t/trouble-with-suspend-resume-on-a-thinkpad-x395-ryzen-7-pro-3700u/4723/45
+  systemd.services.before-sleep = {
+    description = "Jobs to run before going to sleep";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.zenstates}/bin/zenstates --c6-disable";
+    };
+    wantedBy = [ "sleep.target" ];
+    before = [ "sleep.target" ];
+  };
 
   programs.steam = {
     enable = true;
