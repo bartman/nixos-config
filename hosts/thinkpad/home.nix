@@ -29,7 +29,6 @@
     gnumake
     netcat
     netcat
-    nix-index
     pciutils
     procps
     python313
@@ -40,6 +39,9 @@
     usbutils
     wget
     xh          # like curl + jq
+
+    comma       # execute a command from the index
+    nix-index   # ... but could not get get it to work
 
     gh          # github
     ripgrep

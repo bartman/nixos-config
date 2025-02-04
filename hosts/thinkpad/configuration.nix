@@ -16,13 +16,13 @@
 
   networking.hostName = "thinkpad";
 
-  system.autoUpgrade = {
-    enable = true;
-    dates = "*-*-* 04:00:00";
-    persistent = true;
-    allowReboot = false;
-    channel = "https://nixos.org/channels/nixos-24.11";
-  };
+# system.autoUpgrade = {
+#   enable = true;
+#   dates = "*-*-* 04:00:00";
+#   persistent = true;
+#   allowReboot = false;
+#   channel = "https://nixos.org/channels/nixos-24.11";
+# };
 
   nix = let
     users = [ "root" user.name ];
@@ -202,6 +202,7 @@
     } else {};
 
     systemPackages = with pkgs; [
+      home-manager
       mfcl3770cdwlpr
       brscan4
       sof-firmware

@@ -30,7 +30,6 @@
     gnumake
     netcat
     netcat
-    nix-index
     pciutils
     procps
     python313
