@@ -30,6 +30,11 @@ Quick instructions on how to use this.
     ```sh
     make init
     ```
+    alternatively you could create a symlink to this clone (ignore the backup, if you don't have one)
+    ```
+    mv ~/.config/home-manager ~/.config/home-manager-backup
+    ln -s $(pwd) ~/.config/home-manager
+    ```
 - then deploy the configuration
     ```sh
     make
