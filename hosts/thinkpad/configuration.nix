@@ -226,6 +226,7 @@
         swayidle
         networkmanagerapplet
         mesa-demos
+        wlogout
       ] else []);
   };
 
@@ -265,6 +266,19 @@
     wantedBy = [ "sleep.target" ];
     before = [ "sleep.target" ];
   };
+  systemd.sleep = {
+    extraConfig = ''
+      HibernateDelaySec=1h
+      SuspendState=mem
+    '';
+  };
+  services.logind = {
+    # suspend, hibernate, hybrid-sleep, suspend-then-hibernate, lock
+    lidSwitch = "suspend-then-hibernate";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
+  services.power-profiles-daemon.enable = true;
 
   programs.steam = {
     enable = true;
