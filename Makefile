@@ -8,7 +8,7 @@ HOST ?= $(shell hostname)
 FOUND_NIXOS_REBUILD = $(shell which nixos-rebuild 2>/dev/null)
 COMMAND ?= $(if ${FOUND_NIXOS_REBUILD},nixos-rebuild,home-manager)
 
-ACTIONS = build test switch
+ACTIONS = build switch test $(if ${FOUND_NIXOS_REBUILD},boot,instantiate)
 ACTION  ?= switch
 
 NIXOS_REBUILD_ACTIONS = $(foreach n,${ACTIONS},nixos-rebuild/$n)
