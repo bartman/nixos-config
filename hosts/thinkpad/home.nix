@@ -83,6 +83,8 @@
     lldb
     ninja
     nodejs_23
+    ncurses
+    curl
     zig
 
     discord
