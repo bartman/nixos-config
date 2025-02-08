@@ -72,19 +72,42 @@
     #git-radar   # status generator, looks like powerlevel10k already does this
     git-igitt    # better git-graph, TUI
 
+    # -- used by nvim --
+    #autotools-language-server
+    #awk-language-server
+    bashdb
+    bash-language-server
+    cmake-language-server
+    lua-language-server
+    vim-language-server
+    yaml-language-server
+    cppcheck # static analysis for C/C++
+    pylint # static analysis for python
+    ccls # c/c++ language server (clang)
+    nil # language sever for nix
+    stylua # lua code formatter
+    #nixd # C++ nix language server
+
+    vscode-extensions.vadimcn.vscode-lldb # codelldb for nvim
+    vscode-extensions.ms-vscode.cpptools  # cpptools for nvim
+
+    # ttags # tags from tree-sitter
+
     cargo
     clang
+    clang-tools
     cmake
     # gcc - both gcc and clang want to install bin/ld
+    curl
+    ftxui
     gdb
     gnumake
     go
     just        # https://github.com/casey/just
     lldb
+    ncurses
     ninja
     nodejs_23
-    ncurses
-    curl
     zig
 
     discord
@@ -155,7 +178,7 @@
     # intended to start nix-shell with zsh, but does not work
     #NIX_BUILD_SHELL = "zsh";
   };
-  
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -325,7 +348,7 @@
   };
 
   programs.kitty = {
-    enable = true;                               # 
+    enable = true;                               #
     shellIntegration.enableZshIntegration = true;
     font.name = "Terminus (TTF)";
     font.size = 9;
@@ -363,7 +386,7 @@
   programs.dircolors.enable = true;              # LS_COLORS
   programs.navi.enable = true;                   # cheat sheet for cli commands (ctrl-G)
   programs.zoxide.enable = true;                 # cd-replacement
-  
+
   programs.neovim.enable = true;
   programs.neovim.vimAlias = true;
   programs.neovim.viAlias = true;
@@ -409,7 +432,7 @@
       defaultCacheTtl = 1800;
       enableSshSupport = false;
     };
-  } // 
+  } //
       (if myconf.hyprland.enable then {
           copyq.enable = true;
           hyprpaper.enable = true;
