@@ -329,6 +329,18 @@
     shellIntegration.enableZshIntegration = true;
     font.name = "Terminus (TTF)";
     font.size = 9;
+    extraConfig = ''
+      bold_font        auto
+      italic_font      auto
+      bold_italic_font auto
+      force_ltr no
+      adjust_line_height  -2
+      adjust_column_width 0
+      disable_ligatures never
+      font_features Terminus +zero
+      box_drawing_scale 0.001, 1, 1.5, 2
+      text_composition_strategy platform
+    '';
   };
 
   programs.eza = {                               # ls replacement
