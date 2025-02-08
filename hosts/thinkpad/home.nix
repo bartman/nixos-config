@@ -1,6 +1,6 @@
 # vim: set sw=2 et :
 
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, user, myconf, ... }:
 
 {
   home.stateVersion = "24.11";
@@ -396,7 +396,7 @@
       enableSshSupport = false;
     };
   } // 
-      (if user.hyprland.enable then {
+      (if myconf.hyprland.enable then {
           copyq.enable = true;
           hyprpaper.enable = true;
           swayidle = let
@@ -452,7 +452,7 @@
           };
     } else {});
 
-  wayland.windowManager.hyprland.systemd.enable = user.hyprland.enable && ! user.hyprland.withUWSM;
+  wayland.windowManager.hyprland.systemd.enable = myconf.hyprland.enable && ! myconf.hyprland.withUWSM;
 
   systemd.user.startServices = "sd-switch";
 

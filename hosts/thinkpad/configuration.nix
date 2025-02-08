@@ -1,6 +1,6 @@
 # vim: set sw=2 et :
 
-{ config, pkgs, inputs, user, ... }:
+{ config, pkgs, inputs, user, myconf, ... }:
 
 {
   imports =
@@ -88,12 +88,12 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
-  services.xserver.desktopManager.plasma5.enable = user.plasma.enable;
+  services.xserver.desktopManager.plasma5.enable = myconf.plasma.enable;
 
-  programs.hyprland = if user.hyprland.enable then {
+  programs.hyprland = if myconf.hyprland.enable then {
     enable = true;
     xwayland.enable = true;
-    withUWSM = user.hyprland.withUWSM;
+    withUWSM = myconf.hyprland.withUWSM;
   } else {};
 
   hardware = {
@@ -198,7 +198,7 @@
       VISUAL = "nvim";
     };
 
-    sessionVariables = if user.hyprland.enable then {
+    sessionVariables = if myconf.hyprland.enable then {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
     } else {};
@@ -213,7 +213,7 @@
       zenstates # https://github.com/r4m0n/ZenStates-Linux
 
     ] ++
-      (if user.hyprland.enable then with pkgs; [
+      (if myconf.hyprland.enable then with pkgs; [
         kitty
         feh
         #libnotify

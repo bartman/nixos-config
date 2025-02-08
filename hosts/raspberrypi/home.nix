@@ -1,6 +1,6 @@
 # vim: set sw=2 et :
 
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, user, myconf, ... }:
 
 {
   home.stateVersion = "24.11";

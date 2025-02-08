@@ -25,9 +25,19 @@
         name  = "bart";
         full  = "Bart Trojanowski";
         email = "bart@jukie.net";
-        plasma.enable = false;
-        hyprland.enable = true;
-        hyprland.withUWSM = true;
+      };
+      myconf = {
+        # ultimately I plan on converting this to a more structured thing with defaults
+        desktop = {
+          plasma.enable = true;
+          hyprland.enable = true;
+          hyprland.withUWSM = true;
+        };
+        terminal = {
+          plasma.enable = false;
+          hyprland.enable = false;
+          hyprland.withUWSM = false;
+        };
       };
 
     in {
@@ -37,6 +47,7 @@
       nixosConfigurations = (
         import ./hosts {
           system = if builtins ? currentSystem then builtins.currentSystem else "x86_64-linux";
+          myconf = myconf.desktop;
           inherit (nixpkgs) lib;
           inherit inputs user home-manager;
         }
@@ -46,6 +57,7 @@
 
       homeConfigurations."bart@thinkpad" = let
         system = "x86_64-linux";
+        myconf = myconf.desktop;
       in home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
 
@@ -56,13 +68,14 @@
         extraSpecialArgs = {
           name = "${user.name}";
           #home = "/home/${user.name}";
-          inherit inputs user system;
+          inherit inputs user myconf system;
         };
 
       };
 
       homeConfigurations."bart@raspberrypi" = let
         system = "aarch64-linux";
+        myconf = myconf.terminal;
       in home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
 
@@ -73,7 +86,7 @@
         extraSpecialArgs = {
           name = "${user.name}";
           #home = "/home/${user.name}";
-          inherit inputs user system;
+          inherit inputs user myconf system;
         };
 
       };
