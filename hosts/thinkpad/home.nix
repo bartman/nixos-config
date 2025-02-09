@@ -459,20 +459,21 @@
 
       tab_bar_edge bottom
       tab_bar_margin_width 0.0
-      tab_bar_style fade
+      tab_bar_style powerline
       tab_bar_min_tabs 2
       tab_switch_strategy previous
       tab_fade 0.25 0.5 0.75 1
       tab_separator " ┇"
-      tab_powerline_style angled
+      # tab_powerline_style ... angled slanted round
+      tab_powerline_style round
       tab_activity_symbol none
       tab_title_template "{title}"
       active_tab_title_template none
-      # active_tab_foreground   #000
-      # active_tab_background   #eee
+      active_tab_foreground   #000000
+      active_tab_background   #eeeeaa
       active_tab_font_style   bold-italic
-      # inactive_tab_foreground #444
-      # inactive_tab_background #999
+      inactive_tab_foreground #444422
+      inactive_tab_background #999999
       inactive_tab_font_style normal
       # tab_bar_background none
 
