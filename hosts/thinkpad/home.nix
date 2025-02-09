@@ -364,8 +364,10 @@
       font_features Terminus +zero +onum
       text_composition_strategy platform
 
-      #adjust_line_height  -1
+      #modify_font cell_height -2
       #box_drawing_scale 0.001, 1, 1.5, 2
+      #undercurl_style thin-sparse
+      #undercurl_style thick-dense
 
       #: Cursor customization {{{
       # cursor #ffffff
@@ -458,6 +460,7 @@
       #: Tab bar {{{
 
       tab_bar_edge bottom
+      tab_bar_align left
       tab_bar_margin_width 0.0
       tab_bar_style powerline
       tab_bar_min_tabs 2
