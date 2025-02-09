@@ -366,6 +366,86 @@
       #adjust_line_height  -1
       #box_drawing_scale 0.001, 1, 1.5, 2
 
+      #: Color scheme {{{
+
+      background_opacity 1.0
+      background_image none
+      background_image_layout tiled
+      background_image_linear no
+      dynamic_background_opacity yes
+      background_tint 1.0
+      dim_opacity 1
+      # foreground            #cccccc
+      # background            #000000
+      # selection_foreground  #000000
+      # selection_background  #FFFACD
+      # url_color             #0087BD
+      # cursor                #81A1C1
+      # black
+      # color0   #111111
+      # color8   #666666
+      # red
+      # color1   #772222
+      # color9   #FF4444
+      # green
+      # color2   #227722
+      # color10  #44FF44
+      # yellow
+      # color3   #777722
+      # color11  #FFFF44
+      # blue
+      # color4  #1111AA
+      # color12 #7777FF
+      # magenta
+      # color5   #772277
+      # color13  #FF44FF
+      # cyan
+      # color6   #007777
+      # color14  #44FFFF
+      # white
+      # color7   #777777
+      # color15  #EEEEEE
+      #: white
+      # mark1_foreground black
+      # mark1_background #98d3cb
+      # mark2_foreground black
+      # mark2_background #f2dcd3
+      # mark3_foreground black
+      # mark3_background #f274bc
+
+      #: }}}
+
+      #: Advanced {{{
+
+      shell .
+      editor .
+      close_on_child_death no
+      allow_remote_control yes
+      listen_on none
+      update_check_interval 0
+      startup_session none
+      clipboard_control write-clipboard write-primary
+      allow_hyperlinks yes
+      term xterm-kitty
+
+      #: }}}
+
+      #: OS specific tweaks {{{
+      # wayland_titlebar_color system
+      # macos_titlebar_color system
+
+      macos_option_as_alt no
+      macos_hide_from_tasks no
+      macos_quit_when_last_window_closed no
+      macos_window_resizable yes
+      macos_thicken_font 0
+      macos_traditional_fullscreen no
+      macos_show_window_title_in all
+      macos_custom_beam_cursor no
+      linux_display_server auto
+
+      #: }}}
+
       kitty_mod ctrl+shift
       clear_all_shortcuts no
 
@@ -396,35 +476,35 @@
       #: Window management {{{
 
       map kitty_mod+enter new_window
-      map kitty_mod+n new_os_window
-      map kitty_mod+w close_window
-      map kitty_mod+] next_window
-      map kitty_mod+[ previous_window
-      map kitty_mod+f move_window_forward
-      map kitty_mod+b move_window_backward
-      map kitty_mod+` move_window_to_top
-      #map kitty_mod+r start_resizing_window
-      map kitty_mod+1 first_window
-      map kitty_mod+2 second_window
-      map kitty_mod+3 third_window
-      map kitty_mod+4 fourth_window
-      map kitty_mod+5 fifth_window
-      map kitty_mod+6 sixth_window
-      map kitty_mod+7 seventh_window
-      map kitty_mod+8 eighth_window
-      map kitty_mod+9 ninth_window
-      map kitty_mod+0 tenth_window
+      map kitty_mod+n     new_os_window
+      map kitty_mod+w     close_window
+      map kitty_mod+]     next_window
+      map kitty_mod+[     previous_window
+      map kitty_mod+f     move_window_forward
+      map kitty_mod+b     move_window_backward
+      map kitty_mod+`     move_window_to_top
+      #map kitty_mod+r     start_resizing_window
+      map kitty_mod+1     first_window
+      map kitty_mod+2     second_window
+      map kitty_mod+3     third_window
+      map kitty_mod+4     fourth_window
+      map kitty_mod+5     fifth_window
+      map kitty_mod+6     sixth_window
+      map kitty_mod+7     seventh_window
+      map kitty_mod+8     eighth_window
+      map kitty_mod+9     ninth_window
+      map kitty_mod+0     tenth_window
 
       #: }}}
 
       #: Tab management {{{
 
-      map kitty_mod+right next_tab
-      map kitty_mod+left  previous_tab
       map kitty_mod+t     new_tab
       map kitty_mod+q     close_tab
-      map kitty_mod+.     move_tab_forward
-      map kitty_mod+,     move_tab_backward
+      map kitty_mod+.     next_tab
+      map kitty_mod+,     previous_tab
+      map kitty_mod+right move_tab_forward
+      map kitty_mod+left  move_tab_backward
       map kitty_mod+alt+t set_tab_title
 
       #: }}}
@@ -443,14 +523,14 @@
       map kitty_mod+minus       change_font_size all -2.0
       map kitty_mod+kp_subtract change_font_size all -2.0
       map kitty_mod+backspace   change_font_size all 0
-      map kitty_mod+e kitten hints
-      map kitty_mod+p>f kitten hints --type path --program -
-      map kitty_mod+p>shift+f kitten hints --type path
-      map kitty_mod+p>l kitten hints --type line --program -
-      map kitty_mod+p>w kitten hints --type word --program -
-      map kitty_mod+p>h kitten hints --type hash --program -
-      map kitty_mod+p>n kitten hints --type linenum
-      map kitty_mod+p>y kitten hints --type hyperlink
+      map kitty_mod+e           kitten hints
+      map kitty_mod+p>f         kitten hints --type path --program -
+      map kitty_mod+p>shift+f   kitten hints --type path
+      map kitty_mod+p>l         kitten hints --type line --program -
+      map kitty_mod+p>w         kitten hints --type word --program -
+      map kitty_mod+p>h         kitten hints --type hash --program -
+      map kitty_mod+p>n         kitten hints --type linenum
+      map kitty_mod+p>y         kitten hints --type hyperlink
 
       #: }}}
 
@@ -467,7 +547,7 @@
       map kitty_mod+a>d    set_background_opacity default
       map kitty_mod+delete clear_terminal reset active
 
-      map kitty_mod+r reload_config
+      map kitty_mod+r      reload_config
 
       #: }}}
     '';
