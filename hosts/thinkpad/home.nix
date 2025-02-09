@@ -240,6 +240,7 @@
         source ~/etc/zsh/rc/S11_help
         source ~/etc/zsh/rc/S11_history
         source ~/etc/zsh/rc/S20_environment
+        source ~/etc/zsh/rc/S20_gemini_key
         source ~/etc/zsh/rc/S20_openai_key
         source ~/etc/zsh/rc/S20_xai_key
         source ~/etc/zsh/rc/S30_binds
