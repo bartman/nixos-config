@@ -394,14 +394,14 @@
       mouse_hide_wait 4
       # url_color #0087bd
       url_style curly
-      open_url_modifiers kitty_mod
+      #open_url_modifiers kitty_mod
       open_url_with default
       url_prefixes http https file ftp gemini irc gopher mailto news git
       detect_urls yes
       copy_on_select never
       strip_trailing_spaces always
-      rectangle_select_modifiers ctrl+alt
-      terminal_select_modifiers shift
+      #rectangle_select_modifiers ctrl+alt
+      #terminal_select_modifiers shift
       select_by_word_characters @-./_~?&=%+#
       click_interval -1.0
       focus_follows_mouse no
@@ -443,13 +443,13 @@
       single_window_margin_width -1
       window_padding_width 0
       placement_strategy center
-      # active_border_color #00ff00
-      # inactive_border_color #cccccc
-      # bell_border_color #ff5a00
+      active_border_color #00ff00
+      inactive_border_color #cccccc
+      bell_border_color #ff5a00
       inactive_text_alpha 1.0
       hide_window_decorations no
       resize_debounce_time 0.1
-      resize_draw_strategy static
+      #resize_draw_strategy static
       resize_in_steps no
       confirm_os_window_close 0
 
