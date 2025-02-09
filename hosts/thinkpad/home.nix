@@ -367,6 +367,117 @@
       #adjust_line_height  -1
       #box_drawing_scale 0.001, 1, 1.5, 2
 
+      #: Cursor customization {{{
+      # cursor #ffffff
+      # cursor_text_color #ffffff
+      cursor_shape beam
+      cursor_beam_thickness 10
+      cursor_underline_thickness 4.0
+      cursor_blink_interval -1
+      cursor_stop_blinking_after 0
+
+      #: }}}
+
+      #: Scrollback {{{
+
+      scrollback_lines 10000
+      scrollback_pager less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER
+      scrollback_pager_history_size 0
+      scrollback_fill_enlarged_window no
+      wheel_scroll_multiplier 5.0
+      touch_scroll_multiplier 1.0
+
+      #: }}}
+
+      #: Mouse {{{
+
+      mouse_hide_wait 4
+      # url_color #0087bd
+      url_style curly
+      open_url_modifiers kitty_mod
+      open_url_with default
+      url_prefixes http https file ftp gemini irc gopher mailto news git
+      detect_urls yes
+      copy_on_select never
+      strip_trailing_spaces always
+      rectangle_select_modifiers ctrl+alt
+      terminal_select_modifiers shift
+      select_by_word_characters @-./_~?&=%+#
+      click_interval -1.0
+      focus_follows_mouse no
+      pointer_shape_when_grabbed arrow
+      default_pointer_shape beam
+      pointer_shape_when_dragging beam
+
+      #: }}}
+
+      #: Performance tuning {{{
+
+      repaint_delay 13
+      input_delay 0
+      sync_to_monitor yes
+
+      #: }}}
+
+      #: Terminal bell {{{
+
+      enable_audio_bell none 
+      visual_bell_duration 0.0
+      window_alert_on_bell none
+      bell_on_tab yes
+      command_on_bell none
+
+      #: }}}
+
+      #: Window layout {{{
+
+      remember_window_size  no
+      initial_window_width  840
+      initial_window_height 535
+      enabled_layouts *
+      window_resize_step_cells 2
+      window_resize_step_lines 2
+      window_border_width 0.1pt
+      draw_minimal_borders yes
+      window_margin_width 0
+      single_window_margin_width -1
+      window_padding_width 0
+      placement_strategy center
+      # active_border_color #00ff00
+      # inactive_border_color #cccccc
+      # bell_border_color #ff5a00
+      inactive_text_alpha 1.0
+      hide_window_decorations no
+      resize_debounce_time 0.1
+      resize_draw_strategy static
+      resize_in_steps no
+      confirm_os_window_close 0
+
+      #: }}}
+
+      #: Tab bar {{{
+
+      tab_bar_edge bottom
+      tab_bar_margin_width 0.0
+      tab_bar_style fade
+      tab_bar_min_tabs 2
+      tab_switch_strategy previous
+      tab_fade 0.25 0.5 0.75 1
+      tab_separator " ┇"
+      tab_powerline_style angled
+      tab_activity_symbol none
+      tab_title_template "{title}"
+      active_tab_title_template none
+      # active_tab_foreground   #000
+      # active_tab_background   #eee
+      active_tab_font_style   bold-italic
+      # inactive_tab_foreground #444
+      # inactive_tab_background #999
+      inactive_tab_font_style normal
+      # tab_bar_background none
+
+      #: }}}
+
       #: Color scheme {{{
 
       background_opacity 1.0
