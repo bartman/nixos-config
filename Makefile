@@ -27,11 +27,11 @@ nixos-rebuild/init:
 
 ${NIXOS_REBUILD_ACTIONS}: nixos-rebuild/%:
 	$(if ${FOUND_NIXOS_REBUILD},,$(error could not find nixos-rebuild command))
-	${RUN} sudo nixos-rebuild $(notdir $@) ${IMPURE} ${TRACE} --flake "${PWD}#"
+	${RUN} sudo nixos-rebuild $(notdir $@) ${IMPURE} ${TRACE} --flake "${PWD}#" ${EXTRA}
 
 home-manager/init:
 	${RUN} nix run home-manager -- init
 
 ${HOME_MANAGER_ACTIONS}: home-manager/%:
-	${RUN} nix run home-manager -- $(subst test,instantiate,$(notdir $@)) ${IMPURE} ${TRACE} --flake "${PWD}/#${USER}@${HOST}"
+	${RUN} nix run home-manager -- $(subst test,instantiate,$(notdir $@)) ${IMPURE} ${TRACE} --flake "${PWD}/#${USER}@${HOST}" ${EXTRA}
 
