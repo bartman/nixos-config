@@ -15,8 +15,7 @@
   programs.kitty = {
     enable = true;                               #
     shellIntegration.enableZshIntegration = true;
-    #font.name = "Terminus (TTF)";
-    font.name = "Terminus";
+    font.name = "Terminus (TTF)";
     font.size = 9;
     extraConfig = ''
       bold_font        auto
