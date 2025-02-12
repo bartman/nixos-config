@@ -36,6 +36,7 @@
     socat
     tmux
     tree
+    unicode-paracode
     vivid       # LS_COLORS
     usbutils
     wget
@@ -49,7 +50,7 @@
     unzip
     unrar
 
-    speedtest
+    speedtest-cli
 
     lazydocker
     lazygit
