@@ -9,9 +9,9 @@
     modules = [
       ./thinkpad/configuration.nix
 
-      # this adds the nix-index package, we do it in home.nix instead
-      #inputs.nix-index-database.nixosModules.nix-index
-      #{ programs.nix-index-database.comma.enable = true; }
+      # this adds the nix-index package
+      inputs.nix-index-database.nixosModules.nix-index
+      { programs.nix-index-database.comma.enable = true; }
 
       home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
