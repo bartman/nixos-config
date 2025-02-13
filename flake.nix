@@ -17,6 +17,11 @@
       #url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    #nix-index-database = {
+    #  url = "github:Mic92/nix-index-database";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -62,7 +67,8 @@
         pkgs = nixpkgs.legacyPackages.${system};
 
         modules = [
-          ./hosts/thinkpad/home.nix
+            ./hosts/thinkpad/home.nix
+            #nix-index-database.nixosModules.nix-index
         ];
 
         extraSpecialArgs = {
@@ -80,7 +86,8 @@
         pkgs = nixpkgs.legacyPackages.${system};
 
         modules = [
-          ./hosts/raspberrypi/home.nix
+            ./hosts/raspberrypi/home.nix
+            #nix-index-database.nixosModules.nix-index
         ];
 
         extraSpecialArgs = {
