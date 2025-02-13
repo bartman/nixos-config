@@ -42,10 +42,11 @@
     wget
     xh          # like curl + jq
 
-    comma       # execute a command from the index
-    nix-index   # ... but could not get get it to work
+    #comma       # execute a command from the index
+    #nix-index   # ... but could not get get it to work
 
     gh          # github
+    #fh          # https://docs.determinate.systems/flakehub/cli (needs to read up on security)
     ripgrep
     unzip
     unrar
@@ -90,6 +91,7 @@
     # ttags # tags from tree-sitter
 
     cargo
+    bear
     clang
     clang-tools
     cmake

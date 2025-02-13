@@ -18,10 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #nix-index-database = {
-    #  url = "github:Mic92/nix-index-database";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -68,7 +68,9 @@
 
         modules = [
             ./hosts/thinkpad/home.nix
-            #nix-index-database.nixosModules.nix-index
+
+            inputs.nix-index-database.hmModules.nix-index
+            { programs.nix-index-database.comma.enable = true; }
         ];
 
         extraSpecialArgs = {
@@ -87,7 +89,9 @@
 
         modules = [
             ./hosts/raspberrypi/home.nix
-            #nix-index-database.nixosModules.nix-index
+
+            inputs.nix-index-database.hmModules.nix-index
+            { programs.nix-index-database.comma.enable = true; }
         ];
 
         extraSpecialArgs = {

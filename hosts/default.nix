@@ -8,6 +8,11 @@
     specialArgs = {inherit user myconf inputs;};
     modules = [
       ./thinkpad/configuration.nix
+
+      # this adds the nix-index package, we do it in home.nix instead
+      #inputs.nix-index-database.nixosModules.nix-index
+      #{ programs.nix-index-database.comma.enable = true; }
+
       home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
