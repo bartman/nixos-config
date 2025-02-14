@@ -1,7 +1,7 @@
 # vim: set sw=2 et :
 
 # to activate, use
-# 
+#
 #    sudo nixos-rebuild switch
 #
 
@@ -75,7 +75,6 @@
 
         extraSpecialArgs = {
           name = "${user.name}";
-          #home = "/home/${user.name}";
           inherit inputs user myconf system;
         };
 
@@ -96,7 +95,26 @@
 
         extraSpecialArgs = {
           name = "${user.name}";
-          #home = "/home/${user.name}";
+          inherit inputs user myconf system;
+        };
+
+      };
+
+      homeConfigurations."bart@neon" = let
+        system = "aarch64-linux";
+        myconf = myconf.terminal;
+      in home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+
+        modules = [
+            ./hosts/neon/home.nix
+
+            inputs.nix-index-database.hmModules.nix-index
+            { programs.nix-index-database.comma.enable = true; }
+        ];
+
+        extraSpecialArgs = {
+          name = "${user.name}";
           inherit inputs user myconf system;
         };
 
