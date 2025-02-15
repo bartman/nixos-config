@@ -23,7 +23,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixgl.url = "github:nix-community/nixGL";
+    nixgl = {
+      #url = "github:nix-community/nixGL";
+      # https://github.com/nix-community/nixGL/pull/190
+      url = "github:johanneshorner/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

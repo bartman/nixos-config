@@ -117,16 +117,20 @@
       wlogout
     ] else []);
 
-  programs.hyprland = {
-    enable = myconf.hyprland.enable;
-    nvidiaPatches = true;
-    xwayland.enable = true;
+  wayland.windowManager.hyprland = {
+    package = config.lib.nixgl.wrap pkgs.hyprland;
   };
+
+# programs.hyprland = {
+#   enable = myconf.hyprland.enable;
+#   nvidiaPatches = true;
+#   xwayland.enable = true;
+# };
 
   nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.offloadWrapper = "nixGLNvidia";
-  nixGL.installScripts = [ "mesa" "nvidiaPrime" ];
+  nixGL.installScripts = [ "mesa" "mesaPrime" "nvidiaPrime" ];
   nixGL.vulkan.enable = true;
 
   xsession.enable = false;
