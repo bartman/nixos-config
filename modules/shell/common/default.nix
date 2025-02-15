@@ -37,6 +37,8 @@
 
   ];
 
+  programs.bash.enable = true;
+
   programs.eza = {                               # ls replacement
     enable = true;
     git = true;
