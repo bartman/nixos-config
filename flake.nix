@@ -62,7 +62,6 @@
 
       homeConfigurations."bart@thinkpad" = let
         system = "x86_64-linux";
-        myconf = myconf.desktop;
       in home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
 
@@ -74,15 +73,15 @@
         ];
 
         extraSpecialArgs = {
-          name = "${user.name}";
-          inherit inputs user myconf system;
+            name = "${user.name}";
+            myconf = myconf.desktop;
+            inherit inputs user system;
         };
 
       };
 
       homeConfigurations."bart@raspberrypi" = let
         system = "aarch64-linux";
-        myconf = myconf.terminal;
       in home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
 
@@ -94,15 +93,15 @@
         ];
 
         extraSpecialArgs = {
-          name = "${user.name}";
-          inherit inputs user myconf system;
+            name = "${user.name}";
+            myconf = myconf.terminal;
+            inherit inputs user system;
         };
 
       };
 
       homeConfigurations."bart@neon" = let
-        system = "aarch64-linux";
-        myconf = myconf.terminal;
+        system = "x86_64-linux";
       in home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
 
@@ -114,8 +113,9 @@
         ];
 
         extraSpecialArgs = {
-          name = "${user.name}";
-          inherit inputs user myconf system;
+            name = "${user.name}";
+            myconf = myconf.desktop;
+            inherit inputs user system;
         };
 
       };

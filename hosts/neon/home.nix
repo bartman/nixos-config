@@ -91,7 +91,31 @@
     ninja
     nodejs_23
     zig
-  ];
+
+    mfcl3770cdwlpr
+    brscan4
+    sof-firmware
+    pritunl-client
+
+    zenstates # https://github.com/r4m0n/ZenStates-Linux
+
+  ] ++
+    (if myconf.hyprland.enable then with pkgs; [
+      hyprland
+      kitty
+      feh
+      #libnotify
+      waybar
+      #dunst
+      #mako
+      swww
+      wofi
+      swaylock
+      swayidle
+      networkmanagerapplet
+      mesa-demos
+      wlogout
+    ] else []);
 
   xsession.enable = false;
 
@@ -133,6 +157,8 @@
     # intended to start nix-shell with zsh, but does not work
     #NIX_BUILD_SHELL = "zsh";
   };
+
+  programs.bash.enable = true;
 
   programs.zsh = {
     enable = true;
