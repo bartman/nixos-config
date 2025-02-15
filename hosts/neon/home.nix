@@ -1,6 +1,6 @@
 # vim: set sw=2 et :
 
-{ config, lib, pkgs, user, myconf, ... }:
+{ config, lib, pkgs, user, inputs, myconf, ... }:
 
 {
   home.stateVersion = "24.11";
@@ -116,6 +116,18 @@
       mesa-demos
       wlogout
     ] else []);
+
+  programs.hyprland = {
+    enable = myconf.hyprland.enable;
+    nvidiaPatches = true;
+    xwayland.enable = true;
+  };
+
+  nixGL.packages = inputs.nixgl.packages;
+  nixGL.defaultWrapper = "mesa";
+  nixGL.offloadWrapper = "nixGLNvidia";
+  nixGL.installScripts = [ "mesa" "nvidiaPrime" ];
+  nixGL.vulkan.enable = true;
 
   xsession.enable = false;
 
