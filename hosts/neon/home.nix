@@ -74,6 +74,37 @@
 
   xsession.enable = false;
 
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
+  };
+
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+      #name = "adw-gtk3";
+      #package = pkgs.adw-gtk3;
+    };
+    iconTheme = {
+      name = "gruvbox-dark-gtk";
+      package = pkgs.gruvbox-dark-gtk;
+      #name = "papirus-Dark";
+      #package = pkgs.papirus-icon-theme;
+    };
+    font = {
+      name = "FiraCode Nerd Font Mono Medium";
+    };
+  };
+
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
