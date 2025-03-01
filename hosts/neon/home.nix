@@ -68,6 +68,10 @@
     sof-firmware
     pritunl-client
 
+    ollama
+    # ollama-cuda          # TOOD: need to integrate into systemd script
+    # open-webui         # TODO: need to figure out how to start it
+
     zenstates # https://github.com/r4m0n/ZenStates-Linux
 
   ];
