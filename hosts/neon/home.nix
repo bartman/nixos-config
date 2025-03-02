@@ -92,19 +92,19 @@
 
   imports = [
 
-    (import ../../modules/terminal/kitty {inherit config lib pkgs inputs myconf;})
-    (import ../../modules/terminal/ghostty {inherit config lib pkgs inputs myconf;})
+    (import ../../modules/terminal/kitty {inherit config lib pkgs user inputs myconf;})
+    (import ../../modules/terminal/ghostty {inherit config lib pkgs user inputs myconf;})
 
-    (import ../../modules/shell/tmux {inherit config lib pkgs inputs myconf;})
-    (import ../../modules/shell/zsh {inherit config lib pkgs inputs myconf;})
-    (import ../../modules/shell/common {inherit config lib pkgs inputs myconf;})
+    (import ../../modules/shell/tmux {inherit config lib pkgs user inputs myconf;})
+    (import ../../modules/shell/zsh {inherit config lib pkgs user inputs myconf;})
+    (import ../../modules/shell/common {inherit config lib pkgs user inputs myconf;})
 
-    (import ../../modules/dev/cpp {inherit config lib pkgs inputs myconf;})
-    (import ../../modules/dev/git {inherit config lib pkgs inputs myconf;})
-    (import ../../modules/dev/python {inherit config lib pkgs inputs myconf;})
-    (import ../../modules/dev/other {inherit config lib pkgs inputs myconf;})
+    (import ../../modules/dev/cpp {inherit config lib pkgs user inputs myconf;})
+    (import ../../modules/dev/git {inherit config lib pkgs user inputs myconf;})
+    (import ../../modules/dev/python {inherit config lib pkgs user inputs myconf;})
+    (import ../../modules/dev/other {inherit config lib pkgs user inputs myconf;})
 
-    (import ../../modules/wm/hyprland {inherit config lib pkgs inputs myconf;})
+    (import ../../modules/wm/hyprland {inherit config lib pkgs user inputs myconf;})
 
     # ../../modules/starship-prompt/ascii.nix # prompt generator, slower than powerlevel10k
   ];

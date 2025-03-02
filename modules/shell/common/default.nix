@@ -7,6 +7,7 @@
     # nix utilities
 
     nh                   # https://github.com/viperML/nh
+    nix-output-monitor   # nix-build |& nom
 
 
     # shell tools

@@ -1,5 +1,5 @@
 # vim: set sw=2 et :
-{config, lib, pkgs,...}:
+{config, lib, user, pkgs,...}:
 
 {
   home.packages = with pkgs; [
