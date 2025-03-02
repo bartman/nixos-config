@@ -11,7 +11,7 @@ FOUND_NIXOS_REBUILD = $(shell which nixos-rebuild 2>/dev/null)
 # 'nh' provides nicer status/progress output as it's building
 # see:  https://github.com/viperML/nh
 # use it if available...
-FOUND_NH            = $(shell nh --help | grep 'Yet another nix helper' 2>/dev/null)
+FOUND_NH            = $(shell nh --help 2>/dev/null | grep 'Yet another nix helper')
 
 COMMAND ?= $(if ${FOUND_NIXOS_REBUILD},nixos-rebuild,home-manager)
 
