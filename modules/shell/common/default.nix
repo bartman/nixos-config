@@ -4,6 +4,13 @@
 {
   home.packages = with pkgs; [
 
+    # nix utilities
+
+    nh                   # https://github.com/viperML/nh
+
+
+    # shell tools
+
     bash
     difftastic
     fd
@@ -22,7 +29,6 @@
     pciutils
     powertop
     procps
-    python313
     ripgrep
     socat
     tmux
