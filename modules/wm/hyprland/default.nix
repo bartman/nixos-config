@@ -1,7 +1,7 @@
 # vim: set sw=2 et :
 {config, lib, pkgs, inputs, myconf,...}:
 
-{
+(if myconf.hyprland.enable then {
   home.packages = (if myconf.hyprland.enable then with pkgs; [
       hyprland
       kitty
@@ -20,17 +20,17 @@
     ] else []);
 
   programs.waybar = {
-    enable = myconf.hyprland.enable;
+    enable = true;
     systemd.enable = true;
   };
 
   wayland.windowManager.hyprland = {
-    systemd.enable = myconf.hyprland.enable && ! myconf.hyprland.withUWSM;
+    systemd.enable = ! myconf.hyprland.withUWSM;
     package = config.lib.nixgl.wrap pkgs.hyprland;
   };
 
 # programs.hyprland = {
-#   enable = myconf.hyprland.enable;
+#   enable = true;
 #   nvidiaPatches = true;
 #   xwayland.enable = true;
 # };
@@ -42,8 +42,7 @@
   nixGL.vulkan.enable = true;
 
 
-  services =
-    (if myconf.hyprland.enable then {
+  services = {
       copyq.enable = true;
       hyprpaper.enable = true;
       swayidle = let
@@ -97,6 +96,9 @@
               }
         '';
       };
-    } else {});
-}
+    };
+
+} else {
+  # no hyprland, no changes
+})
 
