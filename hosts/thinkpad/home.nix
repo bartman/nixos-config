@@ -144,17 +144,6 @@
     # ../../modules/starship-prompt/ascii.nix # prompt generator, slower than powerlevel10k
   ];
 
-  programs.git = {
-    enable    = true;
-    userName  = "${user.full}";
-    userEmail = "${user.email}";
-    extraConfig = {
-      include = {
-        path = "~/etc/gitconfig";
-      };
-    };
-  };
-
   programs.neovim.enable = true;
   programs.neovim.vimAlias = true;
   programs.neovim.viAlias = true;
