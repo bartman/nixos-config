@@ -6,16 +6,20 @@
 
     # -- cpp build tools --
 
+    bear
     clang
     clang-tools
     cmake
     # gcc - both gcc and clang want to install bin/ld
-    ftxui
     gdb
     gnumake
     lldb
-    ncurses
     ninja
+
+    # -- nice dev libs --
+
+    ncurses
+    ftxui
 
     # -- used by nvim LSP --
 
