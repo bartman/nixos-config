@@ -40,6 +40,8 @@
       ignoreAllDups = false;           # allow historical duplicates
       ignoreDups = true;               # don't store back-to-back duplicates
       ignoreSpace = true;              # don't store lines that start with a space
+      saveNoDups = true;               # don't save duplicates in hist file
+      append = true;                   # append to history, don't truncate it
       share = false;                   # shared between sessions
     };
 
