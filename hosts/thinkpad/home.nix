@@ -31,6 +31,8 @@
     discord
     slack
     zoom-us
+
+    firefox
   ];
 
   xsession = {
@@ -83,7 +85,6 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-
 
   imports = [
 

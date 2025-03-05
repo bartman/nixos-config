@@ -30,6 +30,7 @@
 
     zenstates # https://github.com/r4m0n/ZenStates-Linux
 
+    firefox
   ];
 
   xsession.enable = false;
@@ -88,7 +89,8 @@
     #NIX_BUILD_SHELL = "zsh";
   };
 
-  programs.bash.enable = true;
+  # Install firefox.
+  programs.firefox.enable = true;
 
   imports = [
 
