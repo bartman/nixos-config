@@ -29,6 +29,11 @@
       url = "github:johanneshorner/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-gl-host = {
+      url = "github:numtide/nix-gl-host";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

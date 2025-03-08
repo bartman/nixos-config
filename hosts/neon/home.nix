@@ -31,6 +31,10 @@
     zenstates # https://github.com/r4m0n/ZenStates-Linux
 
     firefox
+
+    # provides nixglhost wrapper
+    inputs.nix-gl-host.defaultPackage.x86_64-linux
+
   ];
 
   xsession.enable = false;

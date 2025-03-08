@@ -38,7 +38,7 @@
   nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   nixGL.offloadWrapper = "nixGLNvidia";
-  nixGL.installScripts = [ "mesa" "mesaPrime" "nvidiaPrime" ];
+  nixGL.installScripts = [ "mesa" ];
   nixGL.vulkan.enable = true;
 
 
