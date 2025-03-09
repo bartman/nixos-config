@@ -35,6 +35,10 @@
     # provides nixglhost wrapper
     inputs.nix-gl-host.defaultPackage.x86_64-linux
 
+    # nvidia monitoring stuff
+    nvitop
+    gpustat
+    #zenith-nvidia
   ];
 
   xsession.enable = false;
